@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   fpdart: ^0.0.14
+  remote:
+    path: ../remote
   shared_preferences: 2.0.13
 
 dev_dependencies:
