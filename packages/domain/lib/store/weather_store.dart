@@ -9,7 +9,7 @@ class WeatherStore {
 
   static const String _woeidKey = 'woeidKey';
 
-  Future<void> setWoeid(int woeid) {
+  Future<bool> setWoeid(int woeid) {
     return _preferenceAssistant.write<int>(key: _woeidKey, value: woeid);
   }
 
