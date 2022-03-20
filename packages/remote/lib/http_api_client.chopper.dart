@@ -23,4 +23,12 @@ class _$HttpApiClient extends HttpApiClient {
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<WeatherForPlaceModel, WeatherForPlaceModel>($request);
   }
+
+  @override
+  Future<Response<List<LocationModel>>> getLocationByQuery(
+      {required String query}) {
+    final $url = 'location/search/?query=${query}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<List<LocationModel>, LocationModel>($request);
+  }
 }
