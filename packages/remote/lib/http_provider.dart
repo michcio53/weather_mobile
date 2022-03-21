@@ -1,26 +1,22 @@
-import 'package:chopper/chopper.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:remote/http_api_client.dart';
 
-/// Wraps httpClient into chopper client
+/// Wraps dio into separate class
 class HttpProvider {
   const HttpProvider({
-    required http.Client httpClient,
+    required Dio dio,
     required String baseUrl,
-  })  : _httpClient = httpClient,
+  })  : _dio = dio,
         _baseUrl = baseUrl;
 
-  final http.Client _httpClient;
+  final Dio _dio;
   final String _baseUrl;
-  
+
   HttpApiClient create({
     required bool isLoggingEnabled,
   }) {
-    final chopperClient = ChopperClient(
-      baseUrl: _baseUrl,
-      client: _httpClient,
-    );
+    _dio.options.baseUrl = _baseUrl;
 
-    return HttpApiClient.create(client: chopperClient);
+    return HttpApiClient(_dio);
   }
 }

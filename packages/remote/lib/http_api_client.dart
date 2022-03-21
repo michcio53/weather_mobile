@@ -1,23 +1,21 @@
-import 'package:chopper/chopper.dart' as chopper;
-import 'package:chopper/chopper.dart';
+import 'package:dio/dio.dart';
 import 'package:remote/weather/model/response/location_model.dart';
 import 'package:remote/weather/model/response/weather_for_place_model.dart';
+import 'package:retrofit/retrofit.dart';
 
-part 'http_api_client.chopper.dart';
+part 'http_api_client.g.dart';
 
-@ChopperApi()
-abstract class HttpApiClient extends ChopperService {
-  static HttpApiClient create({required ChopperClient client}) {
-    return _$HttpApiClient(client);
-  }
+@RestApi()
+abstract class HttpApiClient {
+  factory HttpApiClient(Dio dio) = _HttpApiClient;
 
-  @Get(path: '/location/{woeid}/')
-  Future<chopper.Response<WeatherForPlaceModel>> getWeatherForWoeid({
-    @Path('woeid') required String woeid,
-  });
+  @GET('/location/{woeid}/')
+  Future<WeatherForPlaceModel> getWeatherForWoeid(
+    @Path() String woeid,
+  );
 
-  @Get(path: 'location/search/?query={query}')
-  Future<chopper.Response<List<LocationModel>>> getLocationByQuery({
-    @Path('query') required String query,
-  });
+  @GET('location/search/?query={query}')
+  Future<List<LocationModel>> getLocationByQuery(
+    @Path() String query,
+  );
 }

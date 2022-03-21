@@ -28,7 +28,8 @@ class GetWeatherForSavedLocationUseCase implements UseCase<GetWeatherForSavedLoc
 
   TaskEither<GetWeatherForSavedLocationFailure, int> _getWeatherWoeid() {
     return tryCatchE(() async {
-      final result = _weatherStore.getWoeid();
+      final result = 2459115;
+      // final result = _weatherStore.getWoeid();
       if (result != null) {
         return right(result);
       } else {

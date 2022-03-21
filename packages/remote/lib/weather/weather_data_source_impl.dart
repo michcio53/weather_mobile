@@ -25,20 +25,17 @@ class WeatherDataSourceImpl implements WeatherDataSource {
   TaskEither<ErrorDetail, WeatherForPlace> getWeatherFromId(String id) {
     return tryCatchE<ErrorDetail, WeatherForPlace>(
       () async {
-        final response = await _httpApiClient.getWeatherForWoeid(woeid: id);
+        final response = await _httpApiClient.getWeatherForWoeid(id);
 
-        final body = response.body;
-        if (body != null) {
-          final mappedWeather = _weatherForPlaceMapper.map(body);
-          return right(mappedWeather);
-        } else {
-          return left(ErrorDetailFatal());
-        }
+        final mappedWeather = _weatherForPlaceMapper.map(response);
+        return right(mappedWeather);
       },
-      (error, stackTrace) => ErrorDetailFatal(
-        throwable: error,
-        stackTrace: stackTrace,
-      ),
+      (error, stackTrace) {
+        return ErrorDetailFatal(
+          throwable: error,
+          stackTrace: stackTrace,
+        );
+      },
     );
   }
 
@@ -46,15 +43,10 @@ class WeatherDataSourceImpl implements WeatherDataSource {
   TaskEither<ErrorDetail, List<Location>> getLocationByQuery(String query) {
     return tryCatchE(
       () async {
-        final response = await _httpApiClient.getLocationByQuery(query: query);
+        final response = await _httpApiClient.getLocationByQuery(query);
 
-        final body = response.body;
-        if (body != null) {
-          final mappedLocation = body.map(_locationMapper.map).toList();
-          return right(mappedLocation);
-        } else {
-          return left(ErrorDetailFatal());
-        }
+        final mappedLocation = response.map(_locationMapper.map).toList();
+        return right(mappedLocation);
       },
       (error, stackTrace) => ErrorDetailFatal(
         throwable: error,
