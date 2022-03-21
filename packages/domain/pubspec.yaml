@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  equatable: 2.0.3
   fpdart: ^0.0.14
   get_it: 7.2.0
   remote:
