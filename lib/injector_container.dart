@@ -9,7 +9,7 @@ Future<void> init() async {
 
   _registerBloc();
 
-  injector..registerRemote(baseUrl: '');
+  injector..registerRemote(baseUrl: 'https://www.metaweather.com/api');
 }
 
 void _registerBloc() {

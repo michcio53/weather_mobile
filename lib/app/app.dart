@@ -8,6 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
+import 'package:weather_mobile/router/app_router_factory.dart';
+import 'package:weather_mobile/screens/weather/weather_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -26,7 +28,8 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const Scaffold(),
+      onGenerateRoute: AppRouterFactory().route,
+      initialRoute: WeatherPage.routeName,
     );
   }
 }

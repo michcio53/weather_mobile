@@ -12,8 +12,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     required GetWeatherForSavedLocationUseCase getWeatherForSavedLocationUseCase,
   })  : _getWeatherForSavedLocationUseCase = getWeatherForSavedLocationUseCase,
         super(WeatherState.initial()) {
-    on<WeatherStarted>((event, emit) {
-      _onWeatherStarted(event, emit);
+    on<WeatherStarted>((event, emit) async {
+      await _onWeatherStarted(event, emit);
     });
   }
 
