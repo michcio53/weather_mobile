@@ -1,4 +1,6 @@
-class ErrorDetail {
+import 'package:equatable/equatable.dart';
+
+class ErrorDetail extends Equatable {
   ErrorDetail({
     this.errorCode,
     this.message,
@@ -16,27 +18,14 @@ class ErrorDetail {
   final StackTrace? stackTrace;
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is ErrorDetail &&
-        other.errorCode == errorCode &&
-        other.message == message &&
-        other.traceId == traceId &&
-        other.timeStamp == timeStamp &&
-        other.throwable == throwable &&
-        other.stackTrace == stackTrace;
-  }
-
-  @override
-  int get hashCode {
-    return errorCode.hashCode ^
-        message.hashCode ^
-        traceId.hashCode ^
-        timeStamp.hashCode ^
-        throwable.hashCode ^
-        stackTrace.hashCode;
-  }
+  List<Object?> get props => [
+        errorCode,
+        message,
+        traceId,
+        timeStamp,
+        throwable,
+        stackTrace,
+      ];
 }
 
 class ErrorDetailFatal extends ErrorDetail {

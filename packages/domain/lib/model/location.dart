@@ -1,4 +1,6 @@
-class Location {
+import 'package:equatable/equatable.dart';
+
+class Location extends Equatable {
   const Location({
     required this.title,
     required this.locationType,
@@ -26,18 +28,10 @@ class Location {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Location &&
-        other.title == title &&
-        other.locationType == locationType &&
-        other.lattLong == lattLong &&
-        other.woeid == woeid;
-  }
-
-  @override
-  int get hashCode {
-    return title.hashCode ^ locationType.hashCode ^ lattLong.hashCode ^ woeid.hashCode;
-  }
+  List<Object?> get props => [
+        title,
+        locationType,
+        lattLong,
+        woeid,
+      ];
 }

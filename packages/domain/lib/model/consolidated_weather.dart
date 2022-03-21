@@ -1,4 +1,6 @@
-class ConsolidatedWeather {
+import 'package:equatable/equatable.dart';
+
+class ConsolidatedWeather extends Equatable {
   const ConsolidatedWeather({
     required this.id,
     required this.weatherStateName,
@@ -70,46 +72,21 @@ class ConsolidatedWeather {
   }
 
   @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) {
-    // ignore: always_put_control_body_on_new_line
-    if (identical(this, other)) return true;
-
-    return other is ConsolidatedWeather &&
-        other.id == id &&
-        other.weatherStateName == weatherStateName &&
-        other.weatherStateAbbr == weatherStateAbbr &&
-        other.windDirectionCompass == windDirectionCompass &&
-        other.created == created &&
-        other.applicableDate == applicableDate &&
-        other.minTemp == minTemp &&
-        other.maxTemp == maxTemp &&
-        other.theTemp == theTemp &&
-        other.windSpeed == windSpeed &&
-        other.windDirection == windDirection &&
-        other.airPressure == airPressure &&
-        other.humidity == humidity &&
-        other.visibility == visibility &&
-        other.predictability == predictability;
-  }
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode {
-    return id.hashCode ^
-        weatherStateName.hashCode ^
-        weatherStateAbbr.hashCode ^
-        windDirectionCompass.hashCode ^
-        created.hashCode ^
-        applicableDate.hashCode ^
-        minTemp.hashCode ^
-        maxTemp.hashCode ^
-        theTemp.hashCode ^
-        windSpeed.hashCode ^
-        windDirection.hashCode ^
-        airPressure.hashCode ^
-        humidity.hashCode ^
-        visibility.hashCode ^
-        predictability.hashCode;
-  }
+  List<Object?> get props => [
+        id,
+        weatherStateName,
+        weatherStateAbbr,
+        windDirectionCompass,
+        created,
+        applicableDate,
+        minTemp,
+        maxTemp,
+        theTemp,
+        windSpeed,
+        windDirection,
+        airPressure,
+        humidity,
+        visibility,
+        predictability,
+      ];
 }
