@@ -8,12 +8,13 @@ class PreferenceAssistant {
 
   final SharedPreferences _sharedPreferences;
 
-  Future<bool> write<@required T>({required String key, required T value}) async {
+  Future<bool> write<@required T>(
+      {required String key, required T value}) async {
     if (value is String) {
       return _sharedPreferences.setString(key, value);
     } else if (value is bool) {
       return _sharedPreferences.setBool(key, value);
-    } else if(value is int) {
+    } else if (value is int) {
       return _sharedPreferences.setInt(key, value);
     }
     return false;
@@ -26,7 +27,7 @@ class PreferenceAssistant {
     } else if (T == bool) {
       // ignore: avoid_as
       return _sharedPreferences.getBool(key) as T?;
-    } else if(T == int) {
+    } else if (T == int) {
       // ignore: avoid_as
       return _sharedPreferences.getInt(key) as T?;
     }

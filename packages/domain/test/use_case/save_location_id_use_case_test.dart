@@ -14,11 +14,15 @@ void main() {
   setUp(() {
     mockWeatherStore = MockWeatherStore();
 
-    saveLocationIdUseCase = SaveLocationIdUseCase(weatherStore: mockWeatherStore);
+    saveLocationIdUseCase =
+        SaveLocationIdUseCase(weatherStore: mockWeatherStore);
   });
 
-  test('Given correct parameters it invokes every method in usecase and returns unit value', () async {
-    when(() => mockWeatherStore.setWoeid(any())).thenAnswer((_) => Future.value(true));
+  test(
+      'Given correct parameters it invokes every method in usecase and returns unit value',
+      () async {
+    when(() => mockWeatherStore.setWoeid(any()))
+        .thenAnswer((_) => Future.value(true));
 
     final result = await saveLocationIdUseCase.execute(param: 123).run();
 
@@ -27,13 +31,19 @@ void main() {
     result.fold((l) => throw Exception(l.toString()), (r) => expect(r, unit));
   });
 
-  test('Given false value to SaveLocationIdUseCase it invokes every method in usecase and returns SaveLocationIdFailure.unexpected', () async {
-    when(() => mockWeatherStore.setWoeid(any())).thenAnswer((_) => Future.value(false));
+  test(
+      'Given false value to SaveLocationIdUseCase it invokes every method in usecase and returns SaveLocationIdFailure.unexpected',
+      () async {
+    when(() => mockWeatherStore.setWoeid(any()))
+        .thenAnswer((_) => Future.value(false));
 
     final result = await saveLocationIdUseCase.execute(param: 123).run();
 
     verify(() => mockWeatherStore.setWoeid(any())).called(1);
 
-    result.fold((exceptionDetail) => expect(exceptionDetail, SaveLocationIdFailure.unexpected), (r) {});
+    result.fold(
+        (exceptionDetail) =>
+            expect(exceptionDetail, SaveLocationIdFailure.unexpected),
+        (r) {});
   });
 }

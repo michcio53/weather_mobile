@@ -14,7 +14,8 @@ import 'package:weather_mobile/screens/weather/widget/weather_page_bottom_naviga
 
 import '../../helpers/pump_app.dart';
 
-class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState> implements WeatherBloc {}
+class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState>
+    implements WeatherBloc {}
 
 void main() {
   late MockWeatherBloc mockWeatherBloc;
@@ -24,8 +25,10 @@ void main() {
   });
 
   group('WeatherPage', () {
-    testWidgets('renders WeatherPageBody and WeatherPageBottomNavigationBar', (tester) async {
-      when(() => mockWeatherBloc.state).thenReturn(const WeatherState.initial());
+    testWidgets('renders WeatherPageBody and WeatherPageBottomNavigationBar',
+        (tester) async {
+      when(() => mockWeatherBloc.state)
+          .thenReturn(const WeatherState.initial());
 
       await tester.pumpApp(
         BlocProvider<WeatherBloc>(
@@ -41,8 +44,8 @@ void main() {
 
   group('WeatherPageBody', () {
     testWidgets('renders SizedBox for WeatherStatus.initial', (tester) async {
-      when(() => mockWeatherBloc.state)
-          .thenReturn(const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.initial));
+      when(() => mockWeatherBloc.state).thenReturn(const WeatherState.initial()
+          .copyWith(weatherStatus: WeatherStatus.initial));
 
       await tester.pumpApp(
         BlocProvider<WeatherBloc>(
@@ -54,9 +57,10 @@ void main() {
       expect(find.byType(SizedBox), findsOneWidget);
     });
 
-    testWidgets('renders WeatherBodyLoading for WeatherStatus.loading', (tester) async {
-      when(() => mockWeatherBloc.state)
-          .thenReturn(const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.loading));
+    testWidgets('renders WeatherBodyLoading for WeatherStatus.loading',
+        (tester) async {
+      when(() => mockWeatherBloc.state).thenReturn(const WeatherState.initial()
+          .copyWith(weatherStatus: WeatherStatus.loading));
 
       await tester.pumpApp(
         BlocProvider<WeatherBloc>(
@@ -68,10 +72,11 @@ void main() {
       expect(find.byType(WeatherBodyLoading), findsOneWidget);
     });
 
-    testWidgets('renders SizedBox for  WeatherStatus.success and null weatherForPlace with null consolidatedWeather',
+    testWidgets(
+        'renders SizedBox for  WeatherStatus.success and null weatherForPlace with null consolidatedWeather',
         (tester) async {
-      when(() => mockWeatherBloc.state)
-          .thenReturn(const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success));
+      when(() => mockWeatherBloc.state).thenReturn(const WeatherState.initial()
+          .copyWith(weatherStatus: WeatherStatus.success));
 
       await tester.pumpApp(
         BlocProvider<WeatherBloc>(
@@ -103,7 +108,8 @@ void main() {
       expect(find.byType(WeatherBodySuccess), findsOneWidget);
     });
 
-    testWidgets('renders WeatherBodyFailure for  WeatherStatus.failure', (tester) async {
+    testWidgets('renders WeatherBodyFailure for  WeatherStatus.failure',
+        (tester) async {
       when(() => mockWeatherBloc.state).thenReturn(
         const WeatherState.initial().copyWith(
           weatherStatus: WeatherStatus.failure,

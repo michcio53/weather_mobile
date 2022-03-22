@@ -3,7 +3,10 @@ import 'package:remote/weather/model/response/consolidated_weather_model.dart';
 
 part 'weather_for_place_model.g.dart';
 
-@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake,)
+@JsonSerializable(
+  explicitToJson: true,
+  fieldRename: FieldRename.snake,
+)
 class WeatherForPlaceModel {
   const WeatherForPlaceModel({
     required this.title,
@@ -14,7 +17,8 @@ class WeatherForPlaceModel {
     required this.consolidatedWeather,
   });
 
-  factory WeatherForPlaceModel.fromJson(Map<String, dynamic> json) => _$WeatherForPlaceModelFromJson(json);
+  factory WeatherForPlaceModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherForPlaceModelFromJson(json);
 
   final String title;
   final String locationType;

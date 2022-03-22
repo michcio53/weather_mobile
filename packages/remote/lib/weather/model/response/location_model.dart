@@ -14,7 +14,8 @@ class LocationModel {
     required this.woeid,
   });
 
-  factory LocationModel.fromJson(Map<String, dynamic> json) => _$LocationModelFromJson(json);
+  factory LocationModel.fromJson(Map<String, dynamic> json) =>
+      _$LocationModelFromJson(json);
 
   final String title;
   final String locationType;

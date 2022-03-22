@@ -16,7 +16,8 @@ void main() {
     );
   });
 
-  test('Given correct parameters it invokes shared preferences method', () async {
+  test('Given correct parameters it invokes shared preferences method',
+      () async {
     when(() => mockSharedPreferences.setString(any(), any())).thenAnswer(
       (_) => Future.value(true),
     );
@@ -38,7 +39,8 @@ void main() {
     verify(() => mockSharedPreferences.setInt(any(), any())).called(1);
   });
 
-  test('Given correct parameters it invokes shared preferences method', () async {
+  test('Given correct parameters it invokes shared preferences method',
+      () async {
     when(() => mockSharedPreferences.getString(any())).thenReturn(
       'value',
     );

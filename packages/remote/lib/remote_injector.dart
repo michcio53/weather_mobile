@@ -21,7 +21,8 @@ extension RemoteInjector on GetIt {
     this
       ..registerSingleton(Dio())
       ..registerFactory(() => HttpProvider(dio: get(), baseUrl: baseUrl))
-      ..registerFactory(() => get<HttpProvider>().create(isLoggingEnabled: isLoggingEnabled))
+      ..registerFactory(
+          () => get<HttpProvider>().create(isLoggingEnabled: isLoggingEnabled))
       ..registerFactory(
         () => const ConsolidatedWeatherMapper(),
       )

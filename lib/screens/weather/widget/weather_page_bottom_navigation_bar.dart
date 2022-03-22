@@ -17,9 +17,12 @@ class WeatherPageBottomNavigationBar extends StatelessWidget {
           ConversionSwitch(),
           IconButton(
             onPressed: () async {
-              final result = await Navigator.of(context).pushNamed(SearchPage.routeName);
-              if(result is int) {
-                context.read<WeatherBloc>().add(WeatherItemChoosed(woeid: result));
+              final result =
+                  await Navigator.of(context).pushNamed(SearchPage.routeName);
+              if (result is int) {
+                context
+                    .read<WeatherBloc>()
+                    .add(WeatherItemChoosed(woeid: result));
               }
             },
             icon: Icon(
@@ -41,7 +44,8 @@ class ConversionSwitch extends StatelessWidget {
       builder: ((context, state) {
         print(state.unitsEnum);
         return TextButton(
-          onPressed: () => context.read<WeatherBloc>().add(WeatherConversionChanged()),
+          onPressed: () =>
+              context.read<WeatherBloc>().add(WeatherConversionChanged()),
           child: Text(state.unitsEnum.toStringValue(context.l10n)),
         );
       }),

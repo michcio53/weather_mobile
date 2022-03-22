@@ -25,7 +25,8 @@ class ConsolidatedWeatherModel {
     required this.predictability,
   });
 
-  factory ConsolidatedWeatherModel.fromJson(Map<String, dynamic> json) => _$ConsolidatedWeatherModelFromJson(json);
+  factory ConsolidatedWeatherModel.fromJson(Map<String, dynamic> json) =>
+      _$ConsolidatedWeatherModelFromJson(json);
 
   final int id;
   final String weatherStateName;

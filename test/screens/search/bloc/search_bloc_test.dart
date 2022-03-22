@@ -6,7 +6,8 @@ import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_mobile/screens/search/bloc/search_bloc.dart';
 
-class MockGetLocationsByQueryUseCase extends Mock implements GetLocationsByQueryUseCase {}
+class MockGetLocationsByQueryUseCase extends Mock
+    implements GetLocationsByQueryUseCase {}
 
 void main() {
   late SearchBloc bloc;
@@ -28,7 +29,8 @@ void main() {
     },
     setUp: () {
       when(
-        () => mockGetLocationsByQueryUseCase.execute(param: any(named: 'param')),
+        () =>
+            mockGetLocationsByQueryUseCase.execute(param: any(named: 'param')),
       ).thenAnswer(
         (_) => TaskEither.right(
           [location],
@@ -36,7 +38,8 @@ void main() {
       );
     },
     verify: (bloc) {
-      verify(() => mockGetLocationsByQueryUseCase.execute(param: any(named: 'param'))).called(1);
+      verify(() => mockGetLocationsByQueryUseCase.execute(
+          param: any(named: 'param'))).called(1);
     },
     expect: () => [
       SearchLoading(),
@@ -53,7 +56,8 @@ void main() {
     },
     setUp: () {
       when(
-        () => mockGetLocationsByQueryUseCase.execute(param: any(named: 'param')),
+        () =>
+            mockGetLocationsByQueryUseCase.execute(param: any(named: 'param')),
       ).thenAnswer(
         (_) => TaskEither.left(
           GetLocationsByQueryUseCaseFailure.unexpected,
@@ -61,7 +65,8 @@ void main() {
       );
     },
     verify: (bloc) {
-      verify(() => mockGetLocationsByQueryUseCase.execute(param: any(named: 'param'))).called(1);
+      verify(() => mockGetLocationsByQueryUseCase.execute(
+          param: any(named: 'param'))).called(1);
     },
     expect: () => [
       SearchLoading(),

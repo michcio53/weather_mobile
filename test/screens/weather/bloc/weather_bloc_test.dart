@@ -8,20 +8,24 @@ import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 
-class MockGetWeatherForSavedLocationUseCase extends Mock implements GetWeatherForSavedLocationUseCase {}
+class MockGetWeatherForSavedLocationUseCase extends Mock
+    implements GetWeatherForSavedLocationUseCase {}
 
 class MockSaveLocationIdUseCase extends Mock implements SaveLocationIdUseCase {}
 
 void main() {
   late WeatherBloc bloc;
-  late MockGetWeatherForSavedLocationUseCase mockGetWeatherForSavedLocationUseCase;
+  late MockGetWeatherForSavedLocationUseCase
+      mockGetWeatherForSavedLocationUseCase;
   late MockSaveLocationIdUseCase mockSaveLocationIdUseCase;
 
   setUp(() {
-    mockGetWeatherForSavedLocationUseCase = MockGetWeatherForSavedLocationUseCase();
+    mockGetWeatherForSavedLocationUseCase =
+        MockGetWeatherForSavedLocationUseCase();
     mockSaveLocationIdUseCase = MockSaveLocationIdUseCase();
     bloc = WeatherBloc(
-        getWeatherForSavedLocationUseCase: mockGetWeatherForSavedLocationUseCase,
+        getWeatherForSavedLocationUseCase:
+            mockGetWeatherForSavedLocationUseCase,
         saveLocationIdUseCase: mockSaveLocationIdUseCase);
   });
 
@@ -41,7 +45,9 @@ void main() {
     },
     expect: () => [
       WeatherState.initial().copyWith(weatherStatus: WeatherStatus.loading),
-      WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success, weatherForPlace: weatherForPlace),
+      WeatherState.initial().copyWith(
+          weatherStatus: WeatherStatus.success,
+          weatherForPlace: weatherForPlace),
     ],
   );
 
@@ -85,10 +91,13 @@ void main() {
       bloc.add(WeatherItemChoosed(woeid: 123));
     },
     verify: (bloc) {
-      verify(() => mockSaveLocationIdUseCase.execute(param: any(named: 'param'))).called(1);
+      verify(() =>
+              mockSaveLocationIdUseCase.execute(param: any(named: 'param')))
+          .called(1);
     },
     setUp: () {
-      when(() => mockSaveLocationIdUseCase.execute(param: any(named: 'param'))).thenAnswer(
+      when(() => mockSaveLocationIdUseCase.execute(param: any(named: 'param')))
+          .thenAnswer(
         (_) => TaskEither.right(unit),
       );
       when(() => mockGetWeatherForSavedLocationUseCase.execute()).thenAnswer(
@@ -97,7 +106,9 @@ void main() {
     },
     expect: () => [
       WeatherState.initial().copyWith(weatherStatus: WeatherStatus.loading),
-      WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success, weatherForPlace: weatherForPlace)
+      WeatherState.initial().copyWith(
+          weatherStatus: WeatherStatus.success,
+          weatherForPlace: weatherForPlace)
     ],
   );
 }

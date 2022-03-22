@@ -7,7 +7,8 @@ import 'package:remote/fpdarts/try_catch_e.dart';
 
 enum GetWeatherForSavedLocationFailure { unexpected, noWoeid, notFound }
 
-class GetWeatherForSavedLocationUseCase implements UseCase<GetWeatherForSavedLocationFailure, WeatherForPlace> {
+class GetWeatherForSavedLocationUseCase
+    implements UseCase<GetWeatherForSavedLocationFailure, WeatherForPlace> {
   GetWeatherForSavedLocationUseCase({
     required WeatherStore weatherStore,
     required WeatherDataSource weatherDataSource,
@@ -37,9 +38,10 @@ class GetWeatherForSavedLocationUseCase implements UseCase<GetWeatherForSavedLoc
     }, ((error, stackTrace) => GetWeatherForSavedLocationFailure.unexpected));
   }
 
-  TaskEither<GetWeatherForSavedLocationFailure, WeatherForPlace> _getWeatherForPlace({required int woeid}) {
-    return _weatherDataSource
-        .getWeatherFromId(woeid.toString())
-        .bimap((l) => GetWeatherForSavedLocationFailure.unexpected, (result) => result);
+  TaskEither<GetWeatherForSavedLocationFailure, WeatherForPlace>
+      _getWeatherForPlace({required int woeid}) {
+    return _weatherDataSource.getWeatherFromId(woeid.toString()).bimap(
+        (l) => GetWeatherForSavedLocationFailure.unexpected,
+        (result) => result);
   }
 }

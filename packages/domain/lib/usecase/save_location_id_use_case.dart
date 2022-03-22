@@ -5,8 +5,10 @@ import 'package:remote/fpdarts/try_catch_e.dart';
 
 enum SaveLocationIdFailure { unexpected }
 
-class SaveLocationIdUseCase extends ParamUseCase<SaveLocationIdFailure, Unit, int> {
-  SaveLocationIdUseCase({required WeatherStore weatherStore}) : _weatherStore = weatherStore;
+class SaveLocationIdUseCase
+    extends ParamUseCase<SaveLocationIdFailure, Unit, int> {
+  SaveLocationIdUseCase({required WeatherStore weatherStore})
+      : _weatherStore = weatherStore;
 
   final WeatherStore _weatherStore;
 
@@ -15,7 +17,7 @@ class SaveLocationIdUseCase extends ParamUseCase<SaveLocationIdFailure, Unit, in
     return tryCatchE(() async {
       final result = await _weatherStore.setWoeid(param);
 
-      if(result) {
+      if (result) {
         return right(unit);
       } else {
         return left(SaveLocationIdFailure.unexpected);

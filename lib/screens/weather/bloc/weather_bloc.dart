@@ -11,7 +11,8 @@ part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc({
-    required GetWeatherForSavedLocationUseCase getWeatherForSavedLocationUseCase,
+    required GetWeatherForSavedLocationUseCase
+        getWeatherForSavedLocationUseCase,
     required SaveLocationIdUseCase saveLocationIdUseCase,
   })  : _getWeatherForSavedLocationUseCase = getWeatherForSavedLocationUseCase,
         _saveLocationIdUseCase = saveLocationIdUseCase,
@@ -38,7 +39,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     await _getWeatherForSavedLocationUseCase
         .execute()
         .match(
-          (failure) => emit(state.copyWith(weatherStatus: WeatherStatus.failure)),
+          (failure) =>
+              emit(state.copyWith(weatherStatus: WeatherStatus.failure)),
           (result) => emit(
             state.copyWith(
               weatherForPlace: result,
@@ -49,14 +51,16 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         .run();
   }
 
-  void _onWeatherConversionChanged(WeatherConversionChanged event, Emitter<WeatherState> emit) {
+  void _onWeatherConversionChanged(
+      WeatherConversionChanged event, Emitter<WeatherState> emit) {
     final nextUnitIndex = (state.unitsEnum.index + 1) % UnitsEnum.values.length;
     final changedUnit = UnitsEnum.values[nextUnitIndex];
 
     emit(state.copyWith(unitsEnum: changedUnit));
   }
 
-  Future<void> _mapWeatherItemChoosedd(WeatherItemChoosed event, Emitter<WeatherState> emit) async {
+  Future<void> _mapWeatherItemChoosedd(
+      WeatherItemChoosed event, Emitter<WeatherState> emit) async {
     await _saveLocationIdUseCase.execute(param: event.woeid).run();
     add(WeatherStarted());
   }

@@ -2,7 +2,8 @@ import 'package:domain/model/consolidated_weather.dart';
 import 'package:remote/mapper/mapper.dart';
 import 'package:remote/weather/model/response/consolidated_weather_model.dart';
 
-class ConsolidatedWeatherMapper implements Mapper<ConsolidatedWeatherModel, ConsolidatedWeather> {
+class ConsolidatedWeatherMapper
+    implements Mapper<ConsolidatedWeatherModel, ConsolidatedWeather> {
   const ConsolidatedWeatherMapper();
 
   @override
