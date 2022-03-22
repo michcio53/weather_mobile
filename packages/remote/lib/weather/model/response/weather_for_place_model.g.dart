@@ -14,6 +14,9 @@ WeatherForPlaceModel _$WeatherForPlaceModelFromJson(
       woeid: json['woeid'] as int,
       lattLong: json['latt_long'] as String,
       timezone: json['timezone'] as String,
+      time: json['time'] as String,
+      sunRise: json['sun_rise'] as String,
+      sunSet: json['sun_set'] as String,
       consolidatedWeather: (json['consolidated_weather'] as List<dynamic>)
           .map((e) =>
               ConsolidatedWeatherModel.fromJson(e as Map<String, dynamic>))
@@ -28,6 +31,9 @@ Map<String, dynamic> _$WeatherForPlaceModelToJson(
       'woeid': instance.woeid,
       'latt_long': instance.lattLong,
       'timezone': instance.timezone,
+      'time': instance.time,
+      'sun_rise': instance.sunRise,
+      'sun_set': instance.sunSet,
       'consolidated_weather':
           instance.consolidatedWeather.map((e) => e.toJson()).toList(),
     };

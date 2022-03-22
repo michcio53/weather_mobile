@@ -9,6 +9,9 @@ class WeatherForPlace extends Equatable {
     required this.lattLong,
     required this.timezone,
     required List<ConsolidatedWeather> consolidatedWeather,
+    required this.time,
+    required this.sunRise,
+    required this.sunSet,
   }) : _consolidatedWeather = consolidatedWeather;
 
   final String title;
@@ -17,6 +20,9 @@ class WeatherForPlace extends Equatable {
   final String lattLong;
   final String timezone;
   final List<ConsolidatedWeather> _consolidatedWeather;
+  final DateTime time;
+  final DateTime sunRise;
+  final DateTime sunSet;
 
   ConsolidatedWeather? get consolidatedWeather {
     if (_consolidatedWeather.isNotEmpty) {
@@ -33,6 +39,9 @@ class WeatherForPlace extends Equatable {
     String? lattLong,
     String? timezone,
     List<ConsolidatedWeather>? consolidatedWeather,
+    DateTime? time,
+    DateTime? sunRise,
+    DateTime? sunSet,
   }) {
     return WeatherForPlace(
       title: title ?? this.title,
@@ -41,6 +50,9 @@ class WeatherForPlace extends Equatable {
       lattLong: lattLong ?? this.lattLong,
       timezone: timezone ?? this.timezone,
       consolidatedWeather: consolidatedWeather ?? _consolidatedWeather,
+      time: time ?? this.time,
+      sunRise: sunRise ?? this.sunRise,
+      sunSet: sunSet ?? this.sunSet,
     );
   }
 

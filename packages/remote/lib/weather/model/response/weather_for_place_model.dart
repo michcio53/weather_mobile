@@ -14,6 +14,9 @@ class WeatherForPlaceModel {
     required this.woeid,
     required this.lattLong,
     required this.timezone,
+    required this.time,
+    required this.sunRise,
+    required this.sunSet,
     required this.consolidatedWeather,
   });
 
@@ -25,6 +28,9 @@ class WeatherForPlaceModel {
   final int woeid;
   final String lattLong;
   final String timezone;
+  final String time;
+  final String sunRise;
+  final String sunSet;
   final List<ConsolidatedWeatherModel> consolidatedWeather;
 
   Map<String, dynamic> toJson() => _$WeatherForPlaceModelToJson(this);

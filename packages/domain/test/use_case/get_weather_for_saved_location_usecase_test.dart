@@ -80,13 +80,13 @@ void main() {
   });
 }
 
-const weatherForPlace = WeatherForPlace(
+final weatherForPlace = WeatherForPlace(
   title: 'title',
   locationType: 'locationType',
   woeid: 123,
   lattLong: 'lattLong',
   timezone: 'timezone',
-  consolidatedWeather: [
+  consolidatedWeather: const [
     ConsolidatedWeather(
       id: 123,
       weatherStateName: 'weatherStateName',
@@ -105,4 +105,7 @@ const weatherForPlace = WeatherForPlace(
       predictability: 1,
     ),
   ],
+  sunRise: DateTime.now(),
+  sunSet: DateTime.now(),
+  time: DateTime.now(),
 );

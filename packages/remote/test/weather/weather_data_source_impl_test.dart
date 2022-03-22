@@ -189,15 +189,18 @@ const weatherForPlaceModel = WeatherForPlaceModel(
       predictability: 1,
     ),
   ],
+  sunRise: '2022-03-22T15:46:17.995757-04:00',
+  sunSet: '2022-03-22T15:46:17.995757-04:00',
+  time: '2022-03-22T15:46:17.995757-04:00',
 );
 
-const weatherForPlace = WeatherForPlace(
+final weatherForPlace = WeatherForPlace(
   title: 'title',
   locationType: 'locationType',
   woeid: 123,
   lattLong: 'lattLong',
   timezone: 'timezone',
-  consolidatedWeather: [
+  consolidatedWeather: const [
     ConsolidatedWeather(
       id: 123,
       weatherStateName: 'weatherStateName',
@@ -216,6 +219,9 @@ const weatherForPlace = WeatherForPlace(
       predictability: 1,
     ),
   ],
+  sunRise: DateTime.parse('2022-03-22T15:46:17.995757-04:00'),
+  sunSet: DateTime.parse('2022-03-22T15:46:17.995757-04:00'),
+  time: DateTime.parse('2022-03-22T15:46:17.995757-04:00'),
 );
 
 const locationModel = LocationModel(
