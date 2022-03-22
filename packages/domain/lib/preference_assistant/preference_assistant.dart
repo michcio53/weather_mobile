@@ -8,8 +8,10 @@ class PreferenceAssistant {
 
   final SharedPreferences _sharedPreferences;
 
-  Future<bool> write<@required T>(
-      {required String key, required T value}) async {
+  Future<bool> write<@required T>({
+    required String key,
+    required T value,
+  }) async {
     if (value is String) {
       return _sharedPreferences.setString(key, value);
     } else if (value is bool) {

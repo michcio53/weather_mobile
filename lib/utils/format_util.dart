@@ -1,5 +1,5 @@
 extension DoubleExtension on double {
   double roundToOneDigitAfterComa() {
-    return double.parse((this).toStringAsFixed(1));
+    return double.parse(toStringAsFixed(1));
   }
 }

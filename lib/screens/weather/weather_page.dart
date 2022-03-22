@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
-import 'package:weather_mobile/screens/weather/widget/weather_page_bottom_navigation_bar.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_body_failure.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_body_loading.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_body_succes.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_page_bottom_navigation_bar.dart';
 
 class WeatherPage extends StatelessWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class WeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: WeatherPageBody(),
       bottomNavigationBar: WeatherPageBottomNavigationBar(),
     );
@@ -31,7 +31,7 @@ class WeatherPageBody extends StatelessWidget {
           case WeatherStatus.initial:
             return const SizedBox();
           case WeatherStatus.loading:
-            return WeatherBodyLoading();
+            return const WeatherBodyLoading();
           case WeatherStatus.success:
             final weatherForPlace = state.weatherForPlace;
             final consolidatedWeather = weatherForPlace?.consolidatedWeather;
@@ -43,10 +43,10 @@ class WeatherPageBody extends StatelessWidget {
                 unitsEnum: state.unitsEnum,
               );
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           case WeatherStatus.failure:
-            return WeatherBodyFailure();
+            return const WeatherBodyFailure();
         }
       },
     );

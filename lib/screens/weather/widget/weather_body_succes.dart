@@ -2,8 +2,8 @@ import 'package:domain/model/consolidated_weather.dart';
 import 'package:domain/model/weather_for_place.dart';
 import 'package:flutter/widgets.dart';
 import 'package:weather_mobile/app/dimen.dart';
-import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
+import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/utils/format_util.dart';
 import 'package:weather_mobile/utils/string_utils.dart';
 
@@ -28,7 +28,7 @@ class WeatherBodySuccess extends StatelessWidget {
         ),
         Text(
           weatherForPlace.title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: FontSizes.xxLarge,
           ),
           textAlign: TextAlign.center,
@@ -40,7 +40,7 @@ class WeatherBodySuccess extends StatelessWidget {
         const SizedBox(height: Insets.small),
         Text(
           consolidatedWeather.weatherStateName,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: FontSizes.xLarge,
           ),
           textAlign: TextAlign.center,
@@ -77,8 +77,8 @@ class MainTemperature extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${_theTemp} ${unitsEnum.toDegreeString(context.l10n)}',
-      style: TextStyle(
+      '$_theTemp ${unitsEnum.toDegreeString(context.l10n)}',
+      style: const TextStyle(
         fontSize: 50,
       ),
       textAlign: TextAlign.center,

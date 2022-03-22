@@ -2,8 +2,10 @@ import 'package:domain/model/location.dart';
 import 'package:flutter/material.dart';
 
 class SearchBodySuccess extends StatelessWidget {
-  const SearchBodySuccess({Key? key, required this.locations})
-      : super(key: key);
+  const SearchBodySuccess({
+    Key? key,
+    required this.locations,
+  }) : super(key: key);
 
   final List<Location> locations;
 

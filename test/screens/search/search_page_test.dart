@@ -28,7 +28,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider<SearchBloc>(
           create: (_) => mockSearchBloc,
-          child: SearchPage(),
+          child: const SearchPage(),
         ),
       );
 
@@ -44,7 +44,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider<SearchBloc>(
           create: (_) => mockSearchBloc,
-          child: SearchPageBody(),
+          child: const SearchPageBody(),
         ),
       );
 
@@ -58,7 +58,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider<SearchBloc>(
           create: (_) => mockSearchBloc,
-          child: SearchPageBody(),
+          child: const SearchPageBody(),
         ),
       );
 
@@ -66,12 +66,12 @@ void main() {
     });
 
     testWidgets('renders SearchBodySuccess for SearchSuccess', (tester) async {
-      when(() => mockSearchBloc.state).thenReturn(SearchSuccess(locations: []));
+      when(() => mockSearchBloc.state).thenReturn(const SearchSuccess(locations: []));
 
       await tester.pumpApp(
         BlocProvider<SearchBloc>(
           create: (_) => mockSearchBloc,
-          child: SearchPageBody(),
+          child: const SearchPageBody(),
         ),
       );
 
@@ -84,7 +84,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider<SearchBloc>(
           create: (_) => mockSearchBloc,
-          child: SearchPageBody(),
+          child: const SearchPageBody(),
         ),
       );
 

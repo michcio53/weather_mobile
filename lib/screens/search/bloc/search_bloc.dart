@@ -7,7 +7,7 @@ import 'package:stream_transform/stream_transform.dart';
 part 'search_event.dart';
 part 'search_state.dart';
 
-const _duration = const Duration(milliseconds: 300);
+const _duration = Duration(milliseconds: 300);
 
 EventTransformer<Event> debounce<Event>(Duration duration) {
   return (events, mapper) => events.debounce(duration).switchMap(mapper);
@@ -18,9 +18,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     required GetLocationsByQueryUseCase getLocationsByQueryUseCase,
   })  : _getLocationsByQueryUseCase = getLocationsByQueryUseCase,
         super(SearchInitial()) {
-    on<SearchTyped>((event, emit) async {
-      await _mapSearchTyped(event, emit);
-    }, transformer: debounce(_duration));
+    on<SearchTyped>(
+      (event, emit) async {
+        await _mapSearchTyped(event, emit);
+      },
+      transformer: debounce(_duration),
+    );
   }
 
   final GetLocationsByQueryUseCase _getLocationsByQueryUseCase;

@@ -9,7 +9,7 @@ Route<dynamic> weatherRoute(RouteSettings settings) {
     settings: settings,
     builder: (context) => BlocProvider(
       create: (_) => injector<WeatherBloc>()..add(WeatherStarted()),
-      child: WeatherPage(),
+      child: const WeatherPage(),
     ),
   );
 }

@@ -40,7 +40,7 @@ class WeatherForPlace extends Equatable {
       woeid: woeid ?? this.woeid,
       lattLong: lattLong ?? this.lattLong,
       timezone: timezone ?? this.timezone,
-      consolidatedWeather: consolidatedWeather ?? this._consolidatedWeather,
+      consolidatedWeather: consolidatedWeather ?? _consolidatedWeather,
     );
   }
 

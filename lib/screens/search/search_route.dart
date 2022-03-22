@@ -9,7 +9,7 @@ Route<dynamic> searchRoute(RouteSettings settings) {
     settings: settings,
     builder: (context) => BlocProvider(
       create: (_) => injector<SearchBloc>(),
-      child: SearchPage(),
+      child: const SearchPage(),
     ),
   );
 }

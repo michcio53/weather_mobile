@@ -18,7 +18,7 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(),
       body: SafeArea(
         child: Column(
-          children: [
+          children: const [
             SizedBox(
               height: Insets.medium,
             ),
@@ -39,11 +39,10 @@ class SearchPageInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged: (value) =>
-          context.read<SearchBloc>()..add(SearchTyped(query: value)),
-      decoration: InputDecoration(
+      onChanged: (value) => context.read<SearchBloc>()..add(SearchTyped(query: value)),
+      decoration: const InputDecoration(
         border: OutlineInputBorder(
-          borderSide: new BorderSide(color: Colors.teal),
+          borderSide: BorderSide(color: Colors.teal),
         ),
       ),
     );
@@ -55,18 +54,20 @@ class SearchPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
-      if (state is SearchInitial) {
-        return SearchBodyInitial();
-      } else if (state is SearchLoading) {
-        return SearchBodyLoading();
-      } else if (state is SearchSuccess) {
-        return SearchBodySuccess(locations: state.locations);
-      } else if (state is SearchFailure) {
-        return SearchBodyFailure();
-      } else {
-        return SizedBox();
-      }
-    });
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (context, state) {
+        if (state is SearchInitial) {
+          return const SearchBodyInitial();
+        } else if (state is SearchLoading) {
+          return const SearchBodyLoading();
+        } else if (state is SearchSuccess) {
+          return SearchBodySuccess(locations: state.locations);
+        } else if (state is SearchFailure) {
+          return const SearchBodyFailure();
+        } else {
+          return const SizedBox();
+        }
+      },
+    );
   }
 }

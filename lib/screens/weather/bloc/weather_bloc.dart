@@ -22,7 +22,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       _onWeatherConversionChanged(event, emit);
     });
     on<WeatherItemChoosed>((event, emit) async {
-      _mapWeatherItemChoosedd(event, emit);
+      await _mapWeatherItemChoosedd(event, emit);
     });
   }
 

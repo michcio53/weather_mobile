@@ -12,7 +12,7 @@ class SearchInitial extends SearchState {}
 class SearchLoading extends SearchState {}
 
 class SearchSuccess extends SearchState {
-  SearchSuccess({required this.locations});
+  const SearchSuccess({required this.locations});
 
   final List<Location> locations;
 

@@ -10,22 +10,20 @@ class WeatherPageBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<WeatherBloc>();
     return SafeArea(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ConversionSwitch(),
+          const ConversionSwitch(),
           IconButton(
             onPressed: () async {
-              final result =
-                  await Navigator.of(context).pushNamed(SearchPage.routeName);
+              final result = await Navigator.of(context).pushNamed(SearchPage.routeName);
               if (result is int) {
-                context
-                    .read<WeatherBloc>()
-                    .add(WeatherItemChoosed(woeid: result));
+                bloc.add(WeatherItemChoosed(woeid: result));
               }
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
             ),
           )
@@ -41,14 +39,12 @@ class ConversionSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherBloc, WeatherState>(
-      builder: ((context, state) {
-        print(state.unitsEnum);
+      builder: (context, state) {
         return TextButton(
-          onPressed: () =>
-              context.read<WeatherBloc>().add(WeatherConversionChanged()),
+          onPressed: () => context.read<WeatherBloc>().add(WeatherConversionChanged()),
           child: Text(state.unitsEnum.toStringValue(context.l10n)),
         );
-      }),
+      },
     );
   }
 }

@@ -18,28 +18,30 @@ void main() {
     );
   });
 
-  test('Given correct parameters it invokes prefeneces assistant method',
-      () async {
-    when(() => mockPreferenceAssistant.write(
-        key: any(named: 'key'), value: any(named: 'value'))).thenAnswer(
+  test('Given correct parameters it invokes prefeneces assistant method', () async {
+    when(
+      () => mockPreferenceAssistant.write(
+        key: any(named: 'key'),
+        value: any(
+          named: 'value',
+        ),
+      ),
+    ).thenAnswer(
       (_) => Future.value(true),
     );
 
-    weatherStore.setWoeid(123);
+    await weatherStore.setWoeid(123);
 
-    verify(() => mockPreferenceAssistant.write(
-        key: any(named: 'key'), value: any(named: 'value'))).called(1);
+    verify(() => mockPreferenceAssistant.write(key: any(named: 'key'), value: any(named: 'value'))).called(1);
   });
 
-  test('Given correct parameters it invokes prefeneces assistant method',
-      () async {
+  test('Given correct parameters it invokes prefeneces assistant method', () async {
     when(() => mockPreferenceAssistant.read(key: any(named: 'key'))).thenReturn(
       123,
     );
 
     weatherStore.getWoeid();
 
-    verify(() => mockPreferenceAssistant.read(key: any(named: 'key')))
-        .called(1);
+    verify(() => mockPreferenceAssistant.read(key: any(named: 'key'))).called(1);
   });
 }

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class ErrorDetail extends Equatable {
-  ErrorDetail({
+  const ErrorDetail({
     this.errorCode,
     this.message,
     this.traceId,
@@ -29,7 +29,7 @@ class ErrorDetail extends Equatable {
 }
 
 class ErrorDetailFatal extends ErrorDetail {
-  ErrorDetailFatal({
+  const ErrorDetailFatal({
     Object? throwable,
     StackTrace? stackTrace,
   }) : super(
