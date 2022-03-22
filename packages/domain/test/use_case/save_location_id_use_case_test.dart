@@ -2,7 +2,6 @@ import 'package:domain/store/weather_store.dart';
 import 'package:domain/usecase/save_location_id_use_case.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
 
 class MockWeatherStore extends Mock implements WeatherStore {}

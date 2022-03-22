@@ -9,7 +9,8 @@ import 'package:test/test.dart';
 void main() {
   test('Maps correct values', () {
     const mapper = WeatherForPlaceMapper(
-        consolidatedWeatherMapper: ConsolidatedWeatherMapper());
+      consolidatedWeatherMapper: ConsolidatedWeatherMapper(),
+    );
 
     const input = WeatherForPlaceModel(
       title: 'title',

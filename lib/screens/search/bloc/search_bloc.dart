@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:domain/model/location.dart';
 import 'package:domain/usecase/get_locations_by_query_use_case.dart';
-import 'package:domain/usecase/save_location_id_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -26,8 +25,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   final GetLocationsByQueryUseCase _getLocationsByQueryUseCase;
 
-  Future<void> _mapSearchTyped(
-      SearchTyped event, Emitter<SearchState> emit) async {
+  Future<void> _mapSearchTyped(SearchTyped event, Emitter<SearchState> emit) async {
     emit(SearchLoading());
     await _getLocationsByQueryUseCase
         .execute(param: event.query)

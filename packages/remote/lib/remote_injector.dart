@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:domain/data_source/weather_data_source.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:remote/http_api_client.dart';
-// import 'package:http/http.dart' as http;
 import 'package:remote/http_provider.dart';
 import 'package:remote/weather/mapper/consolidated_weather_mapper.dart';
 import 'package:remote/weather/mapper/location_mapper.dart';
@@ -22,7 +20,8 @@ extension RemoteInjector on GetIt {
       ..registerSingleton(Dio())
       ..registerFactory(() => HttpProvider(dio: get(), baseUrl: baseUrl))
       ..registerFactory(
-          () => get<HttpProvider>().create(isLoggingEnabled: isLoggingEnabled))
+        () => get<HttpProvider>().create(isLoggingEnabled: isLoggingEnabled),
+      )
       ..registerFactory(
         () => const ConsolidatedWeatherMapper(),
       )

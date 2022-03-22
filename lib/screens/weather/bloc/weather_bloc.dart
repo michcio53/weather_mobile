@@ -4,15 +4,13 @@ import 'package:domain/usecase/get_weather_for_saved_location_use_case.dart';
 import 'package:domain/usecase/save_location_id_use_case.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:weather_mobile/screens/search/bloc/search_bloc.dart';
 
 part 'weather_event.dart';
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc({
-    required GetWeatherForSavedLocationUseCase
-        getWeatherForSavedLocationUseCase,
+    required GetWeatherForSavedLocationUseCase getWeatherForSavedLocationUseCase,
     required SaveLocationIdUseCase saveLocationIdUseCase,
   })  : _getWeatherForSavedLocationUseCase = getWeatherForSavedLocationUseCase,
         _saveLocationIdUseCase = saveLocationIdUseCase,
@@ -39,8 +37,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     await _getWeatherForSavedLocationUseCase
         .execute()
         .match(
-          (failure) =>
-              emit(state.copyWith(weatherStatus: WeatherStatus.failure)),
+          (failure) => emit(state.copyWith(weatherStatus: WeatherStatus.failure)),
           (result) => emit(
             state.copyWith(
               weatherForPlace: result,
@@ -51,16 +48,14 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         .run();
   }
 
-  void _onWeatherConversionChanged(
-      WeatherConversionChanged event, Emitter<WeatherState> emit) {
+  void _onWeatherConversionChanged(WeatherConversionChanged event, Emitter<WeatherState> emit) {
     final nextUnitIndex = (state.unitsEnum.index + 1) % UnitsEnum.values.length;
     final changedUnit = UnitsEnum.values[nextUnitIndex];
 
     emit(state.copyWith(unitsEnum: changedUnit));
   }
 
-  Future<void> _mapWeatherItemChoosedd(
-      WeatherItemChoosed event, Emitter<WeatherState> emit) async {
+  Future<void> _mapWeatherItemChoosedd(WeatherItemChoosed event, Emitter<WeatherState> emit) async {
     await _saveLocationIdUseCase.execute(param: event.woeid).run();
     add(WeatherStarted());
   }

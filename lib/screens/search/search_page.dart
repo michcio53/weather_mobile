@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_mobile/app/dimen.dart';
 import 'package:weather_mobile/screens/search/bloc/search_bloc.dart';
