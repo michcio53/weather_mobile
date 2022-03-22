@@ -7,10 +7,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/screens/weather/weather_page.dart';
-import 'package:weather_mobile/screens/widget/weather_body_failure.dart';
-import 'package:weather_mobile/screens/widget/weather_body_loading.dart';
-import 'package:weather_mobile/screens/widget/weather_body_succes.dart';
-import 'package:weather_mobile/screens/widget/weather_page_bottom_navigation_bar.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_body_failure.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_body_loading.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_body_succes.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_page_bottom_navigation_bar.dart';
 
 import '../../helpers/pump_app.dart';
 

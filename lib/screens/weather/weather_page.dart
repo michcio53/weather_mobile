@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
-import 'package:weather_mobile/screens/widget/weather_body_failure.dart';
-import 'package:weather_mobile/screens/widget/weather_body_loading.dart';
-import 'package:weather_mobile/screens/widget/weather_body_succes.dart';
-import 'package:weather_mobile/screens/widget/weather_page_bottom_navigation_bar.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_page_bottom_navigation_bar.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_body_failure.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_body_loading.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_body_succes.dart';
 
 class WeatherPage extends StatelessWidget {
   const WeatherPage({Key? key}) : super(key: key);
