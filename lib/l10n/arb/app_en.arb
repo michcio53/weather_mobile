@@ -1,7 +1,45 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
+    "celciusDegreeSufix": "°C",
+    "@celciusDegreeSufix": {
+        "description": "Text shown in Weather Page as suffix for temp in Celcius"
+    },
+    "fahrenheitDegreeSufix": "°F",
+    "@fahrenheitDegreeSufix": {
+        "description": "Text shown in Weather Page as suffix for temp in Fahrenheit"
+    },
+    "highAbbreviation": "H: {highTemp}{suffix}",
+    "@highAbbreviation": {
+        "description": "Text shown in Weather Page as temperature high",
+        "placeholders": {
+            "highTemp": {
+              "type": "double",
+              "format": "decimalPattern"
+            },
+            "suffix": {
+                "type": "String"
+            }
+        }
+    },
+    "lowAbbreviation": "L: {lowTemp}{suffix}",
+    "@lowAbbreviation": {
+        "description": "Text shown in Weather Page as temperature low",
+        "placeholders": {
+            "lowTemp": {
+              "type": "double",
+              "format": "decimalPattern"
+            },
+            "suffix": {
+                "type": "String"
+            }
+        }
+    },
+    "imperial": "Imperial",
+    "@imperial": {
+        "description": "Text shown in conversion button on Weather Page"
+    },
+    "metric": "Metric",
+    "@metric": {
+        "description": "Text shown in conversion button on Weather Page"
     }
 }

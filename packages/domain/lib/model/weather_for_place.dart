@@ -18,6 +18,14 @@ class WeatherForPlace extends Equatable {
   final String timezone;
   final List<ConsolidatedWeather> _consolidatedWeather;
 
+  ConsolidatedWeather? get consolidatedWeather {
+    if (_consolidatedWeather.isNotEmpty) {
+      return _consolidatedWeather.first;
+    } else {
+      return null;
+    }
+  }
+
   WeatherForPlace copyWith({
     String? title,
     String? locationType,

@@ -4,3 +4,5 @@ part of 'weather_bloc.dart';
 abstract class WeatherEvent {}
 
 class WeatherStarted extends WeatherEvent {}
+
+class WeatherConversionChanged extends WeatherEvent {}

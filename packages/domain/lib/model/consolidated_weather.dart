@@ -1,3 +1,4 @@
+import 'package:domain/utils/conversion_util.dart';
 import 'package:equatable/equatable.dart';
 
 class ConsolidatedWeather extends Equatable {
@@ -34,6 +35,10 @@ class ConsolidatedWeather extends Equatable {
   final int humidity;
   final double visibility;
   final int predictability;
+
+  double get theTempFahrenheit => celciusToFehrenheit(theTemp);
+  double get maxTempFahrenheit => celciusToFehrenheit(maxTemp);
+  double get minTempFahrenheit => celciusToFehrenheit(minTemp);
 
   ConsolidatedWeather copyWith({
     int? id,

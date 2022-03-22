@@ -57,6 +57,19 @@ void main() {
       WeatherState.initial().copyWith(weatherStatus: WeatherStatus.failure),
     ],
   );
+
+  blocTest<WeatherBloc, WeatherState>(
+    'On double WeatherConversionChanged emits UnitsEnum.imperial and then UnitsEnum.metric',
+    build: () => bloc,
+    act: (bloc) {
+      bloc.add(WeatherConversionChanged());
+      bloc.add(WeatherConversionChanged());
+    },
+    expect: () => [
+      WeatherState.initial().copyWith(unitsEnum: UnitsEnum.imperial),
+      WeatherState.initial().copyWith(unitsEnum: UnitsEnum.metric),
+    ],
+  );
 }
 
 const weatherForPlace = WeatherForPlace(
