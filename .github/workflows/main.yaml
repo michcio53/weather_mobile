@@ -22,14 +22,17 @@ jobs:
           channel: ${{env.flutter_channel}}
           cache: true
 
-      - name: 📦 Install Dependencies
+      - name: 📦 Install VeryGoodCLI
         run: |
           flutter pub global activate very_good_cli
           very_good --analytics false
+          
+      - name: 📦 Install Dependencies
+        run: |
           chmod +x ci_prepare_all.sh
           ./ci_prepare_all.sh
 
       - name: 🧪 Run Tests
         run: |
           chmod +x ci_test_all.sh
-          ./chmod +x ci_test_all.sh
+          ./ci_test_all.sh
