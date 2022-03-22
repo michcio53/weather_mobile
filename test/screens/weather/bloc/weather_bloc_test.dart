@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:domain/model/consolidated_weather.dart';
 import 'package:domain/model/weather_for_place.dart';
 import 'package:domain/usecase/get_weather_for_saved_location_use_case.dart';
+import 'package:domain/usecase/save_location_id_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
@@ -9,13 +10,19 @@ import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 
 class MockGetWeatherForSavedLocationUseCase extends Mock implements GetWeatherForSavedLocationUseCase {}
 
+class MockSaveLocationIdUseCase extends Mock implements SaveLocationIdUseCase {}
+
 void main() {
   late WeatherBloc bloc;
   late MockGetWeatherForSavedLocationUseCase mockGetWeatherForSavedLocationUseCase;
+  late MockSaveLocationIdUseCase mockSaveLocationIdUseCase;
 
   setUp(() {
     mockGetWeatherForSavedLocationUseCase = MockGetWeatherForSavedLocationUseCase();
-    bloc = WeatherBloc(getWeatherForSavedLocationUseCase: mockGetWeatherForSavedLocationUseCase);
+    mockSaveLocationIdUseCase = MockSaveLocationIdUseCase();
+    bloc = WeatherBloc(
+        getWeatherForSavedLocationUseCase: mockGetWeatherForSavedLocationUseCase,
+        saveLocationIdUseCase: mockSaveLocationIdUseCase);
   });
 
   blocTest<WeatherBloc, WeatherState>(
@@ -68,6 +75,29 @@ void main() {
     expect: () => [
       WeatherState.initial().copyWith(unitsEnum: UnitsEnum.imperial),
       WeatherState.initial().copyWith(unitsEnum: UnitsEnum.metric),
+    ],
+  );
+
+  blocTest<WeatherBloc, WeatherState>(
+    'On WeatherItemChoosed emits WeatherStatus.loading and then  WeatherStatus.success with weatherForPlace',
+    build: () => bloc,
+    act: (bloc) {
+      bloc.add(WeatherItemChoosed(woeid: 123));
+    },
+    verify: (bloc) {
+      verify(() => mockSaveLocationIdUseCase.execute(param: any(named: 'param'))).called(1);
+    },
+    setUp: () {
+      when(() => mockSaveLocationIdUseCase.execute(param: any(named: 'param'))).thenAnswer(
+        (_) => TaskEither.right(unit),
+      );
+      when(() => mockGetWeatherForSavedLocationUseCase.execute()).thenAnswer(
+        (_) => TaskEither.right(weatherForPlace),
+      );
+    },
+    expect: () => [
+      WeatherState.initial().copyWith(weatherStatus: WeatherStatus.loading),
+      WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success, weatherForPlace: weatherForPlace)
     ],
   );
 }

@@ -14,7 +14,7 @@ abstract class HttpApiClient {
     @Path() String woeid,
   );
 
-  @GET('location/search/?query={query}')
+  @GET('/location/search/?query={query}')
   Future<List<LocationModel>> getLocationByQuery(
     @Path() String query,
   );

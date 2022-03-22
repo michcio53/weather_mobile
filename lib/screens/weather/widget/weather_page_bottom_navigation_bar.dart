@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
+import 'package:weather_mobile/screens/search/search_page.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/utils/string_utils.dart';
 
@@ -15,7 +16,12 @@ class WeatherPageBottomNavigationBar extends StatelessWidget {
         children: [
           ConversionSwitch(),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              final result = await Navigator.of(context).pushNamed(SearchPage.routeName);
+              if(result is int) {
+                context.read<WeatherBloc>().add(WeatherItemChoosed(woeid: result));
+              }
+            },
             icon: Icon(
               Icons.search,
             ),
