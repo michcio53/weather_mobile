@@ -2,9 +2,34 @@ name: weather_mobile
 
 on: [pull_request, push]
 
+
+env:
+  flutter_channel: 'stable'
+  flutter_version: '2.10.3'
+
 jobs:
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
-    with:
-      flutter_channel: stable
-      flutter_version: 2.10.0
+    name: Test, Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v2
+
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{env.flutter_version}}
+          channel: ${{env.flutter_channel}}
+          cache: true
+
+      - name: 📦 Install Dependencies
+        run: |
+          flutter pub global activate very_good_cli
+          very_good --analytics false
+          chmod +x ci_prepare_all.sh
+          ./ci_prepare_all.sh
+
+      - name: 🧪 Run Tests
+        run: |
+          chmod +x ci_test_all.sh
+          ./chmod +x ci_test_all.sh
