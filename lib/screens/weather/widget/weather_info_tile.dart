@@ -217,6 +217,7 @@ class WeatherInfoTileHumidity extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: Insets.large),
         Center(
           child: Text(
             context.l10n.percentage(humidityInPercentage),
@@ -264,6 +265,7 @@ class WeatherInfoTileVisibility extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: Insets.large),
         Text(
           _visibility(context),
           key: const ValueKey('weatherInfoTileVisibility_visibility_text'),
@@ -296,6 +298,7 @@ class WeatherInfoTileAirPressure extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: Insets.large),
         Center(
           child: Text(
             context.l10n.hectopascalSuffix(airPressureInMbar),
@@ -330,6 +333,7 @@ class WeatherInfoTilePredictability extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: Insets.large),
         Center(
           child: Text(
             context.l10n.percentage(predictabilityInPercentage),
