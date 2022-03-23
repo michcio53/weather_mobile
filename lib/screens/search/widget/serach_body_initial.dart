@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:weather_mobile/app/dimen.dart';
+import 'package:weather_mobile/app/theme.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
 
 class SearchBodyInitial extends StatelessWidget {
@@ -13,7 +13,7 @@ class SearchBodyInitial extends StatelessWidget {
         children: [
           Text(
             context.l10n.searchInitialTitle,
-            style: const TextStyle(fontSize: FontSizes.xLarge),
+            style: context.textTheme.headline3,
             textAlign: TextAlign.center,
           ),
         ],

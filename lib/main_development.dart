@@ -6,14 +6,19 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:weather_mobile/app/app.dart';
+import 'package:weather_mobile/app/theme.dart';
 import 'package:weather_mobile/bootstrap.dart';
 import 'package:weather_mobile/env_params.dart';
+import 'package:weather_mobile/router/app_router_factory.dart';
 
 void main() {
   bootstrap(
-    const EnvParams(
+    envParams: const EnvParams(
       weatherUrl: 'https://www.metaweather.com/api',
     ),
-    () => const App(),
+    builder: () => App(
+      appRouterFactory: AppRouterFactory(),
+      appTheme: AppTheme(),
+    ),
   );
 }

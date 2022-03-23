@@ -3,6 +3,7 @@ import 'package:domain/model/weather_for_place.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_mobile/app/dimen.dart';
+import 'package:weather_mobile/app/theme.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_info_tile.dart';
@@ -36,9 +37,7 @@ class WeatherBodySuccess extends StatelessWidget {
                 Text(
                   weatherForPlace.title,
                   key: const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text'),
-                  style: const TextStyle(
-                    fontSize: FontSizes.xxLarge,
-                  ),
+                  style: context.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
                 MainTemperature(
@@ -49,9 +48,7 @@ class WeatherBodySuccess extends StatelessWidget {
                 Text(
                   consolidatedWeather.weatherStateName,
                   key: const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text'),
-                  style: const TextStyle(
-                    fontSize: FontSizes.xLarge,
-                  ),
+                  style: context.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: Insets.small),
@@ -128,9 +125,7 @@ class MainTemperature extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '$_theTemp ${unitsEnum.toDegreeString(context.l10n)}',
-      style: const TextStyle(
-        fontSize: 50,
-      ),
+      style: context.textTheme.headline1?.copyWith(fontSize: FontSizes.xxxLarge),
       textAlign: TextAlign.center,
     );
   }
@@ -177,6 +172,7 @@ class HighLowTemperatureRow extends StatelessWidget {
               unitsEnum.toDegreeString(context.l10n),
             ),
             key: const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text'),
+            style: context.textTheme.bodyLarge,
           ),
         ),
         const SizedBox(width: Insets.small),
@@ -187,6 +183,7 @@ class HighLowTemperatureRow extends StatelessWidget {
               unitsEnum.toDegreeString(context.l10n),
             ),
             key: const ValueKey('HighLowTemperatureRow_displayedMinTemp_text'),
+            style: context.textTheme.bodyLarge,
           ),
         ),
       ],

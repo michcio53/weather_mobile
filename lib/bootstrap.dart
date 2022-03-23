@@ -27,7 +27,10 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(EnvParams envParams, FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap({
+  required EnvParams envParams,
+  required FutureOr<Widget> Function() builder,
+}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };

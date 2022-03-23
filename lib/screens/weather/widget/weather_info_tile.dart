@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_mobile/app/dimen.dart';
+import 'package:weather_mobile/app/theme.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/utils/format_util.dart';
@@ -107,7 +108,10 @@ class WeatherInfoTileTime extends StatelessWidget {
             const Icon(Icons.sunny),
             const SizedBox(width: Insets.small),
             Flexible(
-              child: Text(context.l10n.sunrise),
+              child: Text(
+                context.l10n.sunrise,
+                style: context.textTheme.headline5,
+              ),
             ),
           ],
         ),
@@ -125,7 +129,10 @@ class WeatherInfoTileTime extends StatelessWidget {
             const Icon(Icons.bedtime),
             const SizedBox(width: Insets.small),
             Flexible(
-              child: Text(context.l10n.sunset),
+              child: Text(
+                context.l10n.sunset,
+                style: context.textTheme.headline5,
+              ),
             ),
           ],
         ),
@@ -174,7 +181,10 @@ class WeatherInfoTileWind extends StatelessWidget {
             const Icon(Icons.air),
             const SizedBox(width: Insets.small),
             Flexible(
-              child: Text(context.l10n.wind),
+              child: Text(
+                context.l10n.wind,
+                style: context.textTheme.headline5,
+              ),
             ),
           ],
         ),
@@ -213,7 +223,10 @@ class WeatherInfoTileHumidity extends StatelessWidget {
             const Icon(Icons.water),
             const SizedBox(width: Insets.small),
             Flexible(
-              child: Text(context.l10n.humidity),
+              child: Text(
+                context.l10n.humidity,
+                style: context.textTheme.headline5,
+              ),
             ),
           ],
         ),
@@ -261,7 +274,10 @@ class WeatherInfoTileVisibility extends StatelessWidget {
             const Icon(Icons.visibility),
             const SizedBox(width: Insets.small),
             Flexible(
-              child: Text(context.l10n.humidity),
+              child: Text(
+                context.l10n.visibility,
+                style: context.textTheme.headline5,
+              ),
             ),
           ],
         ),
@@ -294,7 +310,10 @@ class WeatherInfoTileAirPressure extends StatelessWidget {
             const Icon(Icons.speed),
             const SizedBox(width: Insets.small),
             Flexible(
-              child: Text(context.l10n.airPressure),
+              child: Text(
+                context.l10n.airPressure,
+                style: context.textTheme.headline5,
+              ),
             ),
           ],
         ),
@@ -329,7 +348,10 @@ class WeatherInfoTilePredictability extends StatelessWidget {
             const Icon(Icons.online_prediction),
             const SizedBox(width: Insets.small),
             Flexible(
-              child: Text(context.l10n.predictablity),
+              child: Text(
+                context.l10n.predictablity,
+                style: context.textTheme.headline5,
+              ),
             ),
           ],
         ),

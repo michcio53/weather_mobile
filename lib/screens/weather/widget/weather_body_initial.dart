@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_mobile/app/dimen.dart';
+import 'package:weather_mobile/app/theme.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
 
 class WeatherBodyInitial extends StatelessWidget {
@@ -13,13 +14,13 @@ class WeatherBodyInitial extends StatelessWidget {
         children: [
           Text(
             context.l10n.weatherInitialTitle,
-            style: const TextStyle(fontSize: FontSizes.xLarge),
+            style: context.textTheme.headline3,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: Insets.medium),
           Text(
             context.l10n.weatherInitialSubtitle,
-            style: const TextStyle(fontSize: FontSizes.xLarge),
+            style: context.textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: Insets.large),

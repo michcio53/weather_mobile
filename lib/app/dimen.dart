@@ -23,4 +23,5 @@ abstract class FontSizes {
   static const double large = 16;
   static const double xLarge = 24;
   static const double xxLarge = 30;
+  static const double xxxLarge = 42;
 }
