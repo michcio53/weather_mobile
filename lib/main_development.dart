@@ -7,7 +7,13 @@
 
 import 'package:weather_mobile/app/app.dart';
 import 'package:weather_mobile/bootstrap.dart';
+import 'package:weather_mobile/env_params.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(
+    const EnvParams(
+      weatherUrl: 'https://www.metaweather.com/api',
+    ),
+    () => const App(),
+  );
 }

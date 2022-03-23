@@ -10,6 +10,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:weather_mobile/env_params.dart';
 import 'package:weather_mobile/injector_container.dart' as di;
 
 class AppBlocObserver extends BlocObserver {
@@ -26,14 +27,14 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(EnvParams envParams, FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  await di.init();
+  await di.init(envParams);
 
   await runZonedGuarded(
     () async {
