@@ -32,6 +32,7 @@ class WeatherBodySuccess extends StatelessWidget {
               ),
               Text(
                 weatherForPlace.title,
+                key: const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text'),
                 style: const TextStyle(
                   fontSize: FontSizes.xxLarge,
                 ),
@@ -44,6 +45,7 @@ class WeatherBodySuccess extends StatelessWidget {
               const SizedBox(height: Insets.small),
               Text(
                 consolidatedWeather.weatherStateName,
+                key: const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text'),
                 style: const TextStyle(
                   fontSize: FontSizes.xLarge,
                 ),
@@ -164,17 +166,21 @@ class HighLowTemperatureRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
+        Flexible(child: Text(
           context.l10n.highAbbreviation(
             _displayedMaxTemp,
             unitsEnum.toDegreeString(context.l10n),
           ),
-        ),
+          key: const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text'),
+        ),),
         const SizedBox(width: Insets.small),
-        Text(
-          context.l10n.lowAbbreviation(
-            _displayedMinTemp,
-            unitsEnum.toDegreeString(context.l10n),
+        Flexible(
+          child: Text(
+            context.l10n.lowAbbreviation(
+              _displayedMinTemp,
+              unitsEnum.toDegreeString(context.l10n),
+            ),
+            key: const ValueKey('HighLowTemperatureRow_displayedMinTemp_text'),
           ),
         ),
       ],

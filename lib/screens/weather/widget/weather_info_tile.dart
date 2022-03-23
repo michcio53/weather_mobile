@@ -106,7 +106,9 @@ class WeatherInfoTileTime extends StatelessWidget {
           children: [
             const Icon(Icons.sunny),
             const SizedBox(width: Insets.small),
-            Text(context.l10n.sunrise),
+            Flexible(
+              child: Text(context.l10n.sunrise),
+            ),
           ],
         ),
         const SizedBox(height: Insets.xSmall),
@@ -122,7 +124,9 @@ class WeatherInfoTileTime extends StatelessWidget {
           children: [
             const Icon(Icons.bedtime),
             const SizedBox(width: Insets.small),
-            Text(context.l10n.sunset),
+            Flexible(
+              child: Text(context.l10n.sunset),
+            ),
           ],
         ),
         const SizedBox(height: Insets.xSmall),
@@ -169,7 +173,9 @@ class WeatherInfoTileWind extends StatelessWidget {
           children: [
             const Icon(Icons.air),
             const SizedBox(width: Insets.small),
-            Text(context.l10n.wind),
+            Flexible(
+              child: Text(context.l10n.wind),
+            ),
           ],
         ),
         const SizedBox(height: Insets.large),
@@ -206,18 +212,18 @@ class WeatherInfoTileHumidity extends StatelessWidget {
           children: [
             const Icon(Icons.water),
             const SizedBox(width: Insets.small),
-            Text(context.l10n.humidity),
+            Flexible(
+              child: Text(context.l10n.humidity),
+            ),
           ],
         ),
-        Expanded(
-          child: Center(
-            child: Text(
-              context.l10n.percentage(humidityInPercentage),
-              key: const ValueKey('weatherInfoTileHumidity_humidityInPercentage_text'),
-              style: const TextStyle(fontSize: FontSizes.xxLarge),
-            ),
+        Center(
+          child: Text(
+            context.l10n.percentage(humidityInPercentage),
+            key: const ValueKey('weatherInfoTileHumidity_humidityInPercentage_text'),
+            style: const TextStyle(fontSize: FontSizes.xxLarge),
           ),
-        )
+        ),
       ],
     );
   }
@@ -253,17 +259,15 @@ class WeatherInfoTileVisibility extends StatelessWidget {
           children: [
             const Icon(Icons.visibility),
             const SizedBox(width: Insets.small),
-            Text(context.l10n.humidity),
+            Flexible(
+              child: Text(context.l10n.humidity),
+            ),
           ],
         ),
-        Expanded(
-          child: Center(
-            child: Text(
-              _visibility(context),
-              key: const ValueKey('weatherInfoTileVisibility_visibility_text'),
-              style: const TextStyle(fontSize: FontSizes.xxLarge),
-            ),
-          ),
+        Text(
+          _visibility(context),
+          key: const ValueKey('weatherInfoTileVisibility_visibility_text'),
+          style: const TextStyle(fontSize: FontSizes.xxLarge),
         )
       ],
     );
@@ -287,16 +291,16 @@ class WeatherInfoTileAirPressure extends StatelessWidget {
           children: [
             const Icon(Icons.speed),
             const SizedBox(width: Insets.small),
-            Text(context.l10n.airPressure),
+            Flexible(
+              child: Text(context.l10n.airPressure),
+            ),
           ],
         ),
-        Expanded(
-          child: Center(
-            child: Text(
-              context.l10n.hectopascalSuffix(airPressureInMbar),
-              key: const ValueKey('weatherInfoTileAirPressure_airPressureInMbar_text'),
-              style: const TextStyle(fontSize: FontSizes.xxLarge),
-            ),
+        Center(
+          child: Text(
+            context.l10n.hectopascalSuffix(airPressureInMbar),
+            key: const ValueKey('weatherInfoTileAirPressure_airPressureInMbar_text'),
+            style: const TextStyle(fontSize: FontSizes.xxLarge),
           ),
         )
       ],
@@ -321,16 +325,16 @@ class WeatherInfoTilePredictability extends StatelessWidget {
           children: [
             const Icon(Icons.online_prediction),
             const SizedBox(width: Insets.small),
-            Text(context.l10n.predictablity),
+            Flexible(
+              child: Text(context.l10n.predictablity),
+            ),
           ],
         ),
-        Expanded(
-          child: Center(
-            child: Text(
-              context.l10n.percentage(predictabilityInPercentage),
-              key: const ValueKey('weatherInfoTilePredictability_predictabilityInPercentage_text'),
-              style: const TextStyle(fontSize: FontSizes.xxLarge),
-            ),
+        Center(
+          child: Text(
+            context.l10n.percentage(predictabilityInPercentage),
+            key: const ValueKey('weatherInfoTilePredictability_predictabilityInPercentage_text'),
+            style: const TextStyle(fontSize: FontSizes.xxLarge),
           ),
         )
       ],
