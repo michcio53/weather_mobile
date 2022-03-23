@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:weather_mobile/app/dimen.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_info_tile.dart';
 import 'package:weather_mobile/utils/format_util.dart';
 import 'package:weather_mobile/utils/string_utils.dart';
 
@@ -21,35 +22,78 @@ class WeatherBodySuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const SizedBox(
-          height: Insets.medium,
-        ),
-        Text(
-          weatherForPlace.title,
-          style: const TextStyle(
-            fontSize: FontSizes.xxLarge,
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              const SizedBox(
+                height: Insets.medium,
+              ),
+              Text(
+                weatherForPlace.title,
+                style: const TextStyle(
+                  fontSize: FontSizes.xxLarge,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              MainTemperature(
+                consolidatedWeather: consolidatedWeather,
+                unitsEnum: unitsEnum,
+              ),
+              const SizedBox(height: Insets.small),
+              Text(
+                consolidatedWeather.weatherStateName,
+                style: const TextStyle(
+                  fontSize: FontSizes.xLarge,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: Insets.small),
+              HighLowTemperatureRow(
+                consolidatedWeather: consolidatedWeather,
+                unitsEnum: unitsEnum,
+              ),
+              const SizedBox(
+                height: Insets.medium,
+              ),
+            ],
           ),
-          textAlign: TextAlign.center,
         ),
-        MainTemperature(
-          consolidatedWeather: consolidatedWeather,
-          unitsEnum: unitsEnum,
-        ),
-        const SizedBox(height: Insets.small),
-        Text(
-          consolidatedWeather.weatherStateName,
-          style: const TextStyle(
-            fontSize: FontSizes.xLarge,
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: Insets.medium),
+          sliver: SliverGrid.count(
+            mainAxisSpacing: Insets.medium,
+            crossAxisSpacing: Insets.medium,
+            crossAxisCount: 2,
+            children: [
+              WeatherInfoTile.time(
+                sunRise: weatherForPlace.sunRise,
+                sunSet: weatherForPlace.sunSet,
+              ),
+              WeatherInfoTile.wind(
+                windSpeedKm: consolidatedWeather.windSpeedKm,
+                windSpeedMph: consolidatedWeather.windSpeed,
+                windDirectionCompass: consolidatedWeather.windDirectionCompass,
+                unitsEnum: unitsEnum,
+              ),
+              WeatherInfoTile.humidity(
+                humidityInPercentage: consolidatedWeather.humidity,
+              ),
+              WeatherInfoTile.visibility(
+                visiblityKm: consolidatedWeather.visibilityKm,
+                visiblityMph: consolidatedWeather.visibility,
+                unitsEnum: unitsEnum,
+              ),
+              WeatherInfoTile.airPressure(
+                airPressureInMbar: consolidatedWeather.airPressure,
+              ),
+              WeatherInfoTile.predictability(
+                predictabilityInPercentage: consolidatedWeather.predictability,
+              ),
+            ],
           ),
-          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: Insets.small),
-        HighLowTemperatureRow(
-          consolidatedWeather: consolidatedWeather,
-          unitsEnum: unitsEnum,
-        )
       ],
     );
   }

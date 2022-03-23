@@ -14,7 +14,9 @@ class WeatherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: WeatherPageBody(),
+      body: SafeArea(
+        child: WeatherPageBody(),
+      ),
       bottomNavigationBar: WeatherPageBottomNavigationBar(),
     );
   }

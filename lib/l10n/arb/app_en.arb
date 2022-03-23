@@ -41,5 +41,92 @@
     "metric": "Metric",
     "@metric": {
         "description": "Text shown in conversion button on Weather Page"
+    },
+    "sunrise": "Sunrise",
+    "@sunrise": {
+        "description": "Text shown in time tile on Weather Page"
+    },
+    "sunset": "Sunset",
+    "@sunset": {
+        "description": "Text shown in time tile on Weather Page"
+    },
+    "kmPerHourSuffix": "{value} km/hr",
+    "@kmPerHourSuffix": {
+        "description": "Text shown in Weather Page",
+        "placeholders": {
+            "value": {
+              "type": "double",
+              "format": "decimalPattern"
+            }
+        }
+    },
+    "milesPerHourSuffix": "{value} mi/h",
+    "@milesPerHourSuffix": {
+        "description": "Text shown in Weather Page",
+        "placeholders": {
+            "value": {
+              "type": "double",
+              "format": "decimalPattern"
+            }
+        }
+    },
+    "wind": "Wind",
+    "@wind": {
+        "description": "Text shown in wind tile on Weather Page"
+    },
+    "humidity": "Humidity",
+    "@humidity": {
+        "description": "Text shown in humidity tile on Weather Page"
+    },
+    "percentage": "{value} %",
+    "@percentage": {
+        "description": "Text shown on Weather Page",
+        "placeholders": {
+            "value": {
+              "type": "int"
+            }
+        }
+    },
+    "visibility": "Visibility",
+    "@visibility": {
+        "description": "Text shown in visibility tile on Weather Page"
+    },
+    "airPressure": "Air pressure",
+    "@airPressure": {
+        "description": "Text shown in airPressure tile on Weather Page"
+    },
+    "kmSuffix": "{value} km",
+    "@kmSuffix": {
+        "description": "Text shown in Weather Page",
+        "placeholders": {
+            "value": {
+              "type": "double",
+              "format": "decimalPattern"
+            }
+        }
+    },
+    "milesSuffix": "{value} miles",
+    "@milesSuffix": {
+        "description": "Text shown in Weather Page",
+        "placeholders": {
+            "value": {
+              "type": "double",
+              "format": "decimalPattern"
+            }
+        }
+    },
+    "hectopascalSuffix": "{value} hPa",
+    "@hectopascalSuffix": {
+        "description": "Text shown in Weather Page",
+        "placeholders": {
+            "value": {
+              "type": "double",
+              "format": "decimalPattern"
+            }
+        }
+    },
+    "predictablity": "Predictablity",
+    "@predictablity": {
+        "description": "Text shown in predictablity tile on Weather Page"
     }
 }

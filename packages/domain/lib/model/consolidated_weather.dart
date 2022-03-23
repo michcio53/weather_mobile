@@ -26,19 +26,27 @@ class ConsolidatedWeather extends Equatable {
   final String windDirectionCompass;
   final String created;
   final String applicableDate;
+  /// Min Temp in Celcius
   final double minTemp;
+  /// Max Temp in Celcius
   final double maxTemp;
+  /// Temp in Celcius
   final double theTemp;
+  /// Wind Speed in Mph
   final double windSpeed;
   final double windDirection;
+  /// Airpressure in mbar
   final double airPressure;
   final int humidity;
+  /// Visibility in Mph
   final double visibility;
   final int predictability;
 
   double get theTempFahrenheit => celciusToFehrenheit(theTemp);
   double get maxTempFahrenheit => celciusToFehrenheit(maxTemp);
   double get minTempFahrenheit => celciusToFehrenheit(minTemp);
+  double get windSpeedKm => milesPerHourToKiliometerPerHour(windSpeed);
+  double get visibilityKm => milesPerHourToKiliometerPerHour(visibility);
 
   ConsolidatedWeather copyWith({
     int? id,
