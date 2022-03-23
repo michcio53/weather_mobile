@@ -1,7 +1,10 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:domain/model/consolidated_weather.dart';
 import 'package:domain/model/weather_for_place.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 
 import 'package:weather_mobile/screens/weather/widget/weather_body_succes.dart';
@@ -9,7 +12,18 @@ import 'package:weather_mobile/utils/format_util.dart';
 
 import '../../../helpers/helpers.dart';
 
+class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState> implements WeatherBloc {}
+
+class FakeWeatherStarted extends Fake implements WeatherStarted {}
+
 void main() {
+  late MockWeatherBloc mockWeatherBloc;
+
+  setUp(() {
+    mockWeatherBloc = MockWeatherBloc();
+    registerFallbackValue(FakeWeatherStarted());
+  });
+
   group(
     'WeatherBodySuccess',
     () {
@@ -51,6 +65,36 @@ void main() {
           final weatherStateNameWidget = tester
               .firstWidget<Text>(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text')));
           expect(weatherStateNameWidget.data, consolidatedWeather.weatherStateName);
+        },
+      );
+
+      testWidgets(
+        'triggers WeatherBloc on pull to refresh',
+        (tester) async {
+          when(() => mockWeatherBloc.state).thenReturn(
+            const WeatherState.initial(),
+          );
+          when(() => mockWeatherBloc.add(any())).thenAnswer((_) async {});
+
+          await tester.pumpApp(
+            BlocProvider<WeatherBloc>(
+              create: (_) => mockWeatherBloc,
+              child: WeatherBodySuccess(
+                consolidatedWeather: consolidatedWeather,
+                unitsEnum: UnitsEnum.metric,
+                weatherForPlace: weatherForPlace,
+              ),
+            ),
+          );
+
+          await tester.pump();
+
+          await tester.fling(find.byType(MainTemperature), const Offset(0, 700), 1000);
+          await tester.pump(const Duration(seconds: 1)); // finish the scroll animation
+          await tester.pump(const Duration(seconds: 1)); // finish the indicator settle animation
+          await tester.pump(const Duration(seconds: 1)); // finish the indicator hide animation
+
+          verify(() => mockWeatherBloc.add(any())).called(1);
         },
       );
     },
