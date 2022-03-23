@@ -34,18 +34,24 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     Emitter<WeatherState> emit,
   ) async {
     emit(state.copyWith(weatherStatus: WeatherStatus.loading));
-    await _getWeatherForSavedLocationUseCase
-        .execute()
-        .match(
-          (failure) => emit(state.copyWith(weatherStatus: WeatherStatus.failure)),
-          (result) => emit(
-            state.copyWith(
-              weatherForPlace: result,
-              weatherStatus: WeatherStatus.success,
-            ),
-          ),
-        )
-        .run();
+    await _getWeatherForSavedLocationUseCase.execute().match(
+      (failure) {
+        switch (failure) {
+          case GetWeatherForSavedLocationFailure.unexpected:
+            emit(state.copyWith(weatherStatus: WeatherStatus.failure));
+            break;
+          case GetWeatherForSavedLocationFailure.noWoeid:
+            emit(state.copyWith(weatherStatus: WeatherStatus.initial));
+            break;
+        }
+      },
+      (result) => emit(
+        state.copyWith(
+          weatherForPlace: result,
+          weatherStatus: WeatherStatus.success,
+        ),
+      ),
+    ).run();
   }
 
   void _onWeatherConversionChanged(WeatherConversionChanged event, Emitter<WeatherState> emit) {

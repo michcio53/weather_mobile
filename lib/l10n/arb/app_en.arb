@@ -128,5 +128,25 @@
     "predictablity": "Predictablity",
     "@predictablity": {
         "description": "Text shown in predictablity tile on Weather Page"
+    },
+    "weatherInitialTitle": "No location has been added",
+    "@weatherInitialTitle": {
+        "description": "Text shown in Initial Page on Weather Page"
+    },
+    "weatherInitialSubtitle": "Press search icon at the bottom",
+    "@weatherInitialSubtitle": {
+        "description": "Text shown in Initial Page on Weather Page"
+    },
+    "weatherFailureTitle": "An error occured while fetching the weather",
+    "@weatherFailureTitle": {
+        "description": "Text shown in Failure Page on Weather Page"
+    },
+    "weatherFailureSubtitle": "Click button below or search for the place again",
+    "@weatherFailureSubtitle": {
+        "description": "Text shown in Failure Page on Weather Page"
+    },
+    "weatherFailureButtonTitle": "Try again",
+    "@weatherFailureButtonTitle": {
+        "description": "Text shown in Failure Page on Weather Page"
     }
 }

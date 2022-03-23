@@ -5,7 +5,7 @@ import 'package:domain/usecase/use_case.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:remote/fpdarts/try_catch_e.dart';
 
-enum GetWeatherForSavedLocationFailure { unexpected, noWoeid, notFound }
+enum GetWeatherForSavedLocationFailure { unexpected, noWoeid }
 
 class GetWeatherForSavedLocationUseCase implements UseCase<GetWeatherForSavedLocationFailure, WeatherForPlace> {
   GetWeatherForSavedLocationUseCase({

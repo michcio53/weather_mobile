@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_body_failure.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_body_initial.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_body_loading.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_body_succes.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_page_bottom_navigation_bar.dart';
@@ -31,7 +32,7 @@ class WeatherPageBody extends StatelessWidget {
       builder: (context, state) {
         switch (state.weatherStatus) {
           case WeatherStatus.initial:
-            return const SizedBox();
+            return const WeatherBodyInitial();
           case WeatherStatus.loading:
             return const WeatherBodyLoading();
           case WeatherStatus.success:
