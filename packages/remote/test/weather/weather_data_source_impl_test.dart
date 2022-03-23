@@ -21,11 +21,13 @@ class MockHttpApiClient extends Mock implements HttpApiClient {}
 // ignore: avoid_implementing_value_types
 class FakeWeatherForPlace extends Fake implements WeatherForPlace {}
 
+// ignore: avoid_implementing_value_types
 class FakeWeatherForPlaceModel extends Fake implements WeatherForPlaceModel {}
 
 // ignore: avoid_implementing_value_types
 class FakeLocation extends Fake implements Location {}
 
+// ignore: avoid_implementing_value_types
 class FakeLocationModel extends Fake implements LocationModel {}
 
 void main() {

@@ -1,5 +1,6 @@
 import 'package:domain/model/weather_for_place.dart';
 import 'package:remote/mapper/mapper.dart';
+import 'package:remote/utils/utils.dart';
 import 'package:remote/weather/mapper/consolidated_weather_mapper.dart';
 import 'package:remote/weather/model/response/weather_for_place_model.dart';
 
@@ -19,8 +20,8 @@ class WeatherForPlaceMapper implements Mapper<WeatherForPlaceModel, WeatherForPl
       lattLong: element.lattLong,
       timezone: element.timezone,
       consolidatedWeather: element.consolidatedWeather.map(_consolidatedWeatherMapper.map).toList(),
-      sunRise: DateTime.parse(element.sunRise),
-      sunSet: DateTime.parse(element.sunSet),
+      sunRise: element.sunRise.removeTimeZoneFromString(),
+      sunSet: element.sunSet.removeTimeZoneFromString(),
       time: DateTime.parse(element.time),
     );
   }
