@@ -22,8 +22,45 @@ class WeatherBodySuccess extends StatelessWidget {
   final ConsolidatedWeather consolidatedWeather;
   final UnitsEnum unitsEnum;
 
+  double? get _theTemp {
+    switch (unitsEnum) {
+      case UnitsEnum.imperial:
+        return consolidatedWeather.theTempFahrenheit?.roundToOneDigitAfterComa();
+      case UnitsEnum.metric:
+        return consolidatedWeather.theTemp?.roundToOneDigitAfterComa();
+    }
+  }
+
+  double? get _maxTemp {
+    switch (unitsEnum) {
+      case UnitsEnum.imperial:
+      case UnitsEnum.metric:
+        return consolidatedWeather.maxTemp?.roundToOneDigitAfterComa();
+    }
+  }
+
+  double? get _minTemp {
+    switch (unitsEnum) {
+      case UnitsEnum.imperial:
+        return consolidatedWeather.minTempFahrenheit?.roundToOneDigitAfterComa();
+
+      case UnitsEnum.metric:
+        return consolidatedWeather.minTemp?.roundToOneDigitAfterComa();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final weatherStateName = consolidatedWeather.weatherStateName;
+    final windSpeedKm = consolidatedWeather.windSpeedKm;
+    final windSpeed = consolidatedWeather.windSpeed;
+    final windDirectionCompass = consolidatedWeather.windDirectionCompass;
+    final visibilityKm = consolidatedWeather.visibilityKm;
+    final visibility = consolidatedWeather.visibility;
+    final predictability = consolidatedWeather.predictability;
+    final airPressure = consolidatedWeather.airPressure;
+    final humidity = consolidatedWeather.humidity;
+
     return RefreshIndicator(
       onRefresh: () async => context.read<WeatherBloc>().add(WeatherStarted()),
       child: CustomScrollView(
@@ -40,22 +77,27 @@ class WeatherBodySuccess extends StatelessWidget {
                   style: context.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
-                MainTemperature(
-                  consolidatedWeather: consolidatedWeather,
-                  unitsEnum: unitsEnum,
-                ),
+                if (_theTemp != null)
+                  Text(
+                    '$_theTemp ${unitsEnum.toDegreeString(context.l10n)}',
+                    style: context.textTheme.headline1?.copyWith(fontSize: FontSizes.xxxLarge),
+                    textAlign: TextAlign.center,
+                  ),
                 const SizedBox(height: Insets.small),
-                Text(
-                  consolidatedWeather.weatherStateName,
-                  key: const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text'),
-                  style: context.textTheme.headline2,
-                  textAlign: TextAlign.center,
-                ),
+                if (weatherStateName != null)
+                  Text(
+                    weatherStateName,
+                    key: const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text'),
+                    style: context.textTheme.headline2,
+                    textAlign: TextAlign.center,
+                  ),
                 const SizedBox(height: Insets.small),
-                HighLowTemperatureRow(
-                  consolidatedWeather: consolidatedWeather,
-                  unitsEnum: unitsEnum,
-                ),
+                if (_maxTemp != null && _minTemp != null)
+                  HighLowTemperatureRow(
+                    unitsEnum: unitsEnum,
+                    maxTemp: _maxTemp!,
+                    minTemp: _minTemp!,
+                  ),
                 const SizedBox(
                   height: Insets.medium,
                 ),
@@ -73,26 +115,31 @@ class WeatherBodySuccess extends StatelessWidget {
                   sunRise: weatherForPlace.sunRise,
                   sunSet: weatherForPlace.sunSet,
                 ),
-                WeatherInfoTile.wind(
-                  windSpeedKm: consolidatedWeather.windSpeedKm,
-                  windSpeedMph: consolidatedWeather.windSpeed,
-                  windDirectionCompass: consolidatedWeather.windDirectionCompass,
-                  unitsEnum: unitsEnum,
-                ),
-                WeatherInfoTile.humidity(
-                  humidityInPercentage: consolidatedWeather.humidity,
-                ),
-                WeatherInfoTile.visibility(
-                  visiblityKm: consolidatedWeather.visibilityKm,
-                  visiblityMph: consolidatedWeather.visibility,
-                  unitsEnum: unitsEnum,
-                ),
-                WeatherInfoTile.airPressure(
-                  airPressureInMbar: consolidatedWeather.airPressure,
-                ),
-                WeatherInfoTile.predictability(
-                  predictabilityInPercentage: consolidatedWeather.predictability,
-                ),
+                if (windSpeedKm != null && windSpeed != null && windDirectionCompass != null)
+                  WeatherInfoTile.wind(
+                    windSpeedKm: windSpeedKm,
+                    windSpeedMph: windSpeed,
+                    windDirectionCompass: windDirectionCompass,
+                    unitsEnum: unitsEnum,
+                  ),
+                if (humidity != null)
+                  WeatherInfoTile.humidity(
+                    humidityInPercentage: humidity,
+                  ),
+                if (visibility != null && visibilityKm != null)
+                  WeatherInfoTile.visibility(
+                    visiblityKm: visibilityKm,
+                    visiblityMph: visibility,
+                    unitsEnum: unitsEnum,
+                  ),
+                if (airPressure != null)
+                  WeatherInfoTile.airPressure(
+                    airPressureInMbar: airPressure,
+                  ),
+                if (predictability != null)
+                  WeatherInfoTile.predictability(
+                    predictabilityInPercentage: predictability,
+                  ),
               ],
             ),
           ),
@@ -102,63 +149,17 @@ class WeatherBodySuccess extends StatelessWidget {
   }
 }
 
-class MainTemperature extends StatelessWidget {
-  const MainTemperature({
-    Key? key,
-    required this.consolidatedWeather,
-    required this.unitsEnum,
-  }) : super(key: key);
-
-  final ConsolidatedWeather consolidatedWeather;
-  final UnitsEnum unitsEnum;
-
-  double get _theTemp {
-    switch (unitsEnum) {
-      case UnitsEnum.imperial:
-        return consolidatedWeather.theTempFahrenheit.roundToOneDigitAfterComa();
-      case UnitsEnum.metric:
-        return consolidatedWeather.theTemp.roundToOneDigitAfterComa();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '$_theTemp ${unitsEnum.toDegreeString(context.l10n)}',
-      style: context.textTheme.headline1?.copyWith(fontSize: FontSizes.xxxLarge),
-      textAlign: TextAlign.center,
-    );
-  }
-}
-
 class HighLowTemperatureRow extends StatelessWidget {
   const HighLowTemperatureRow({
     Key? key,
-    required this.consolidatedWeather,
+    required this.maxTemp,
+    required this.minTemp,
     required this.unitsEnum,
   }) : super(key: key);
 
-  final ConsolidatedWeather consolidatedWeather;
+  final double maxTemp;
+  final double minTemp;
   final UnitsEnum unitsEnum;
-
-  double get _displayedMaxTemp {
-    switch (unitsEnum) {
-      case UnitsEnum.imperial:
-        return consolidatedWeather.maxTempFahrenheit.roundToOneDigitAfterComa();
-      case UnitsEnum.metric:
-        return consolidatedWeather.maxTemp.roundToOneDigitAfterComa();
-    }
-  }
-
-  double get _displayedMinTemp {
-    switch (unitsEnum) {
-      case UnitsEnum.imperial:
-        return consolidatedWeather.minTempFahrenheit.roundToOneDigitAfterComa();
-
-      case UnitsEnum.metric:
-        return consolidatedWeather.minTemp.roundToOneDigitAfterComa();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +169,7 @@ class HighLowTemperatureRow extends StatelessWidget {
         Flexible(
           child: Text(
             context.l10n.highAbbreviation(
-              _displayedMaxTemp,
+              maxTemp,
               unitsEnum.toDegreeString(context.l10n),
             ),
             key: const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text'),
@@ -179,7 +180,7 @@ class HighLowTemperatureRow extends StatelessWidget {
         Flexible(
           child: Text(
             context.l10n.lowAbbreviation(
-              _displayedMinTemp,
+              minTemp,
               unitsEnum.toDegreeString(context.l10n),
             ),
             key: const ValueKey('HighLowTemperatureRow_displayedMinTemp_text'),

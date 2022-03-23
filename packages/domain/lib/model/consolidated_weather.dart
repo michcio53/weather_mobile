@@ -20,33 +20,39 @@ class ConsolidatedWeather extends Equatable {
     required this.predictability,
   });
 
-  final int id;
-  final String weatherStateName;
-  final String weatherStateAbbr;
-  final String windDirectionCompass;
-  final String created;
-  final String applicableDate;
-  /// Min Temp in Celcius
-  final double minTemp;
-  /// Max Temp in Celcius
-  final double maxTemp;
-  /// Temp in Celcius
-  final double theTemp;
-  /// Wind Speed in Mph
-  final double windSpeed;
-  final double windDirection;
-  /// Airpressure in mbar
-  final double airPressure;
-  final int humidity;
-  /// Visibility in Mph
-  final double visibility;
-  final int predictability;
+  final int? id;
+  final String? weatherStateName;
+  final String? weatherStateAbbr;
+  final String? windDirectionCompass;
+  final String? created;
+  final String? applicableDate;
 
-  double get theTempFahrenheit => celciusToFehrenheit(theTemp);
-  double get maxTempFahrenheit => celciusToFehrenheit(maxTemp);
-  double get minTempFahrenheit => celciusToFehrenheit(minTemp);
-  double get windSpeedKm => milesPerHourToKiliometerPerHour(windSpeed);
-  double get visibilityKm => milesPerHourToKiliometerPerHour(visibility);
+  /// Min Temp in Celcius
+  final double? minTemp;
+
+  /// Max Temp in Celcius
+  final double? maxTemp;
+
+  /// Temp in Celcius
+  final double? theTemp;
+
+  /// Wind Speed in Mph
+  final double? windSpeed;
+  final double? windDirection;
+
+  /// Airpressure in mbar
+  final double? airPressure;
+  final int? humidity;
+
+  /// Visibility in Mph
+  final double? visibility;
+  final int? predictability;
+
+  double? get theTempFahrenheit => theTemp != null ? celciusToFehrenheit(theTemp!) : null;
+  double? get maxTempFahrenheit => maxTemp != null ? celciusToFehrenheit(maxTemp!) : null;
+  double? get minTempFahrenheit => minTemp != null ? celciusToFehrenheit(minTemp!) : null;
+  double? get windSpeedKm => windSpeed != null ? milesPerHourToKiliometerPerHour(windSpeed!) : null;
+  double? get visibilityKm => visibility != null ? milesPerHourToKiliometerPerHour(visibility!) : null;
 
   ConsolidatedWeather copyWith({
     int? id,

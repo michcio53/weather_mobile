@@ -40,7 +40,6 @@ void main() {
 
           expect(find.byType(SliverList), findsOneWidget);
           expect(find.byType(SliverGrid), findsOneWidget);
-          expect(find.byType(MainTemperature), findsOneWidget);
           expect(find.byType(HighLowTemperatureRow), findsOneWidget);
           expect(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text')), findsOneWidget);
           expect(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text')), findsOneWidget);
@@ -89,7 +88,7 @@ void main() {
 
           await tester.pump();
 
-          await tester.fling(find.byType(MainTemperature), const Offset(0, 700), 1000);
+          await tester.fling(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text')), const Offset(0, 700), 1000);
           await tester.pump(const Duration(seconds: 1)); // finish the scroll animation
           await tester.pump(const Duration(seconds: 1)); // finish the indicator settle animation
           await tester.pump(const Duration(seconds: 1)); // finish the indicator hide animation
@@ -102,56 +101,23 @@ void main() {
 
   group('HighLowTemperatureRow', () {
     testWidgets(
-      'renders MainTemperature with correct text in metric units',
-      (tester) async {
-        await tester.pumpApp(
-          const MainTemperature(
-            consolidatedWeather: consolidatedWeather,
-            unitsEnum: UnitsEnum.metric,
-          ),
-        );
-
-        final tempWidget = tester.firstWidget<Text>(find.byType(Text));
-
-        expect(tempWidget.data, '${consolidatedWeather.theTemp} °C');
-      },
-    );
-
-    testWidgets(
-      'renders MainTemperature with correct text in imperial units',
-      (tester) async {
-        await tester.pumpApp(
-          const MainTemperature(
-            consolidatedWeather: consolidatedWeather,
-            unitsEnum: UnitsEnum.imperial,
-          ),
-        );
-
-        final tempWidget = tester.firstWidget<Text>(find.byType(Text));
-
-        expect(tempWidget.data, '${consolidatedWeather.theTempFahrenheit.roundToOneDigitAfterComa()} °F');
-      },
-    );
-  });
-
-  group('HighLowTemperatureRow', () {
-    testWidgets(
       'renders HighLowTemperatureRow with correct text in metric units',
       (tester) async {
         await tester.pumpApp(
-          const HighLowTemperatureRow(
-            consolidatedWeather: consolidatedWeather,
+          HighLowTemperatureRow(
             unitsEnum: UnitsEnum.metric,
+            maxTemp: consolidatedWeather.maxTemp!,
+            minTemp: consolidatedWeather.minTemp!,
           ),
         );
 
         final maxTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text')));
-        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTemp.roundToOneDigitAfterComa()}°C');
+        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTemp?.roundToOneDigitAfterComa()}°C');
 
         final minTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMinTemp_text')));
-        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTemp.roundToOneDigitAfterComa()}°C');
+        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTemp?.roundToOneDigitAfterComa()}°C');
       },
     );
 
@@ -159,19 +125,20 @@ void main() {
       'renders HighLowTemperatureRow with correct text in imperial units',
       (tester) async {
         await tester.pumpApp(
-          const HighLowTemperatureRow(
-            consolidatedWeather: consolidatedWeather,
+          HighLowTemperatureRow(
             unitsEnum: UnitsEnum.imperial,
+            maxTemp: consolidatedWeather.maxTempFahrenheit!.roundToOneDigitAfterComa(),
+            minTemp: consolidatedWeather.minTempFahrenheit!.roundToOneDigitAfterComa(),
           ),
         );
 
         final maxTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text')));
-        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTempFahrenheit.roundToOneDigitAfterComa()}°F');
+        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTempFahrenheit?.roundToOneDigitAfterComa()}°F');
 
         final minTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMinTemp_text')));
-        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTempFahrenheit.roundToOneDigitAfterComa()}°F');
+        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTempFahrenheit?.roundToOneDigitAfterComa()}°F');
       },
     );
   });
