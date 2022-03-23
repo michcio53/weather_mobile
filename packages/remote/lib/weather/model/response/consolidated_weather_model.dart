@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'consolidated_weather_model.g.dart';
@@ -6,7 +7,7 @@ part 'consolidated_weather_model.g.dart';
   explicitToJson: true,
   fieldRename: FieldRename.snake,
 )
-class ConsolidatedWeatherModel {
+class ConsolidatedWeatherModel extends Equatable {
   const ConsolidatedWeatherModel({
     this.id,
     this.weatherStateName,
@@ -44,4 +45,23 @@ class ConsolidatedWeatherModel {
   final int? predictability;
 
   Map<String, dynamic> toJson() => _$ConsolidatedWeatherModelToJson(this);
+
+  @override
+  List<Object?> get props => [
+        id,
+        weatherStateName,
+        weatherStateAbbr,
+        windDirectionCompass,
+        created,
+        applicableDate,
+        minTemp,
+        maxTemp,
+        theTemp,
+        windSpeed,
+        windDirection,
+        airPressure,
+        humidity,
+        visibility,
+        predictability,
+      ];
 }
