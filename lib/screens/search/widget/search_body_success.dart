@@ -16,9 +16,7 @@ class SearchBodySuccess extends StatelessWidget {
           .map(
             (location) => ListTile(
               title: Text(location.title),
-              onTap: () {
-                Navigator.of(context).pop(location.woeid);
-              },
+              onTap: () => Navigator.of(context).pop(location.woeid),
             ),
           )
           .toList(),

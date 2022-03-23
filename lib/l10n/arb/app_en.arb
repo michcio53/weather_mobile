@@ -148,5 +148,13 @@
     "weatherFailureButtonTitle": "Try again",
     "@weatherFailureButtonTitle": {
         "description": "Text shown in Failure Page on Weather Page"
+    },
+    "searchInitialTitle": "Type city name in text field",
+    "@searchInitialTitle": {
+        "description": "Text shown in Initial Page on Search Page"
+    },
+    "searchFailureTitle": "An error occured while fetching items",
+    "@searchFailureTitle": {
+        "description": "Text shown in Failure Page on Search Page"
     }
 }

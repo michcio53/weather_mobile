@@ -72,6 +72,30 @@ void main() {
       SearchFailure(),
     ],
   );
+
+  blocTest<SearchBloc, SearchState>(
+    'On SearchTyped with empty query emits SearchInitial',
+    build: () => bloc,
+    wait: const Duration(milliseconds: 300),
+    act: (bloc) {
+      bloc.add(SearchTyped(query: ''));
+    },
+    setUp: () {
+      when(
+        () => mockGetLocationsByQueryUseCase.execute(param: any(named: 'param')),
+      ).thenAnswer(
+        (_) => TaskEither.right(
+          [location],
+        ),
+      );
+    },
+    verify: (bloc) {
+      verifyNever(() => mockGetLocationsByQueryUseCase.execute(param: any(named: 'param')));
+    },
+    expect: () => [
+      SearchInitial(),
+    ],
+  );
 }
 
 const location = Location(

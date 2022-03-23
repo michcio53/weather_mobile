@@ -29,15 +29,19 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final GetLocationsByQueryUseCase _getLocationsByQueryUseCase;
 
   Future<void> _mapSearchTyped(SearchTyped event, Emitter<SearchState> emit) async {
-    emit(SearchLoading());
-    await _getLocationsByQueryUseCase
-        .execute(param: event.query)
-        .match(
-          (_) => emit(SearchFailure()),
-          (result) => emit(
-            SearchSuccess(locations: result),
-          ),
-        )
-        .run();
+    if (event.query.isNotEmpty) {
+      emit(SearchLoading());
+      await _getLocationsByQueryUseCase
+          .execute(param: event.query)
+          .match(
+            (_) => emit(SearchFailure()),
+            (result) => emit(
+              SearchSuccess(locations: result),
+            ),
+          )
+          .run();
+    } else {
+      emit(SearchInitial());
+    }
   }
 }

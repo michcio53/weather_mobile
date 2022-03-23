@@ -38,11 +38,14 @@ class SearchPageInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: (value) => context.read<SearchBloc>()..add(SearchTyped(query: value)),
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.teal),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.medium),
+      child: TextFormField(
+        onChanged: (value) => context.read<SearchBloc>()..add(SearchTyped(query: value)),
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.teal),
+          ),
         ),
       ),
     );
