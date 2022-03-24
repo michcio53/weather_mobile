@@ -32,7 +32,7 @@ extension WeatherStateEnumExtenstion on WeatherStateEnum {
   String toAsset() {
     switch (this) {
       case WeatherStateEnum.snow:
-        return AppAssets.s;
+        return AppAssets.sn;
       case WeatherStateEnum.sleet:
         return AppAssets.sl;
       case WeatherStateEnum.hail:
