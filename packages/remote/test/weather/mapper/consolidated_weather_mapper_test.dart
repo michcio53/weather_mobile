@@ -13,7 +13,7 @@ void main() {
       weatherStateAbbr: 'weatherStateAbbr',
       windDirectionCompass: 'windDirectionCompass',
       created: 'created',
-      applicableDate: 'applicableDate',
+      applicableDate: '2022-03-22T15:46:17.995757-04:00',
       minTemp: 1.2,
       maxTemp: 1.2,
       theTemp: 1.2,
@@ -25,13 +25,13 @@ void main() {
       predictability: 1,
     );
 
-    const output = ConsolidatedWeather(
+    final output = ConsolidatedWeather(
       id: 123,
       weatherStateName: 'weatherStateName',
       weatherStateAbbr: 'weatherStateAbbr',
       windDirectionCompass: 'windDirectionCompass',
       created: 'created',
-      applicableDate: 'applicableDate',
+      applicableDate: DateTime.parse('2022-03-22T15:46:17.995757-04:00'),
       minTemp: 1.2,
       maxTemp: 1.2,
       theTemp: 1.2,

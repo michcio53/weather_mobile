@@ -166,9 +166,9 @@ class WeatherInfoTileWind extends StatelessWidget {
   String _windSpeed(BuildContext context) {
     switch (unitsEnum) {
       case UnitsEnum.imperial:
-        return context.l10n.milesPerHourSuffix(windSpeedMph.roundToOneDigitAfterComa());
+        return context.l10n.milesPerHourSuffix(windSpeedMph.oneDigitAfterComa());
       case UnitsEnum.metric:
-        return context.l10n.kmPerHourSuffix(windSpeedKm.roundToOneDigitAfterComa());
+        return context.l10n.kmPerHourSuffix(windSpeedKm.oneDigitAfterComa());
     }
   }
 
@@ -258,9 +258,9 @@ class WeatherInfoTileVisibility extends StatelessWidget {
   String _visibility(BuildContext context) {
     switch (unitsEnum) {
       case UnitsEnum.imperial:
-        return context.l10n.milesSuffix(visiblityMph.roundToOneDigitAfterComa());
+        return context.l10n.milesSuffix(visiblityMph.oneDigitAfterComa());
       case UnitsEnum.metric:
-        return context.l10n.kmSuffix(visiblityKm.roundToOneDigitAfterComa());
+        return context.l10n.kmSuffix(visiblityKm.oneDigitAfterComa());
     }
   }
 

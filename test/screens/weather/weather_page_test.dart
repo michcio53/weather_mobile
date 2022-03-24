@@ -1,7 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:domain/model/consolidated_weather.dart';
 import 'package:domain/model/weather_for_place.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -69,7 +68,7 @@ void main() {
       expect(find.byType(WeatherBodyLoading), findsOneWidget);
     });
 
-    testWidgets('renders SizedBox for  WeatherStatus.success and null weatherForPlace with null consolidatedWeather',
+    testWidgets('renders WeatherBodyFailure for  WeatherStatus.success and null weatherForPlace with null consolidatedWeather',
         (tester) async {
       when(() => mockWeatherBloc.state).thenReturn(
         const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success),
@@ -82,7 +81,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(SizedBox), findsOneWidget);
+      expect(find.byType(WeatherBodyFailure), findsOneWidget);
     });
 
     testWidgets(
@@ -130,14 +129,14 @@ final weatherForPlace = WeatherForPlace(
   woeid: 123,
   lattLong: 'lattLong',
   timezone: 'timezone',
-  consolidatedWeather: const [
+  consolidatedWeather: [
     ConsolidatedWeather(
       id: 123,
       weatherStateName: 'weatherStateName',
       weatherStateAbbr: 'weatherStateAbbr',
       windDirectionCompass: 'windDirectionCompass',
       created: 'created',
-      applicableDate: 'applicableDate',
+      applicableDate: DateTime.parse('2022-03-22T15:46:17.995757-04:00'),
       minTemp: 1.2,
       maxTemp: 1.2,
       theTemp: 1.2,

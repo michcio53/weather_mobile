@@ -3,8 +3,8 @@ import 'package:weather_mobile/utils/format_util.dart';
 
 void main() {
   test('Given double it double with one digit', () async {
-    final parsed = fullDouble.roundToOneDigitAfterComa();
-    final parsed2 = fullDouble2.roundToOneDigitAfterComa();
+    final parsed = fullDouble.oneDigitAfterComa();
+    final parsed2 = fullDouble2.oneDigitAfterComa();
     expect(parsed, parsedDouble);
     expect(parsed2, parsedDouble2);
   });

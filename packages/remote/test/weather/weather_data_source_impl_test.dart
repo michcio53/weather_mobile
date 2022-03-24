@@ -202,14 +202,14 @@ final weatherForPlace = WeatherForPlace(
   woeid: 123,
   lattLong: 'lattLong',
   timezone: 'timezone',
-  consolidatedWeather: const [
+  consolidatedWeather: [
     ConsolidatedWeather(
       id: 123,
       weatherStateName: 'weatherStateName',
       weatherStateAbbr: 'weatherStateAbbr',
       windDirectionCompass: 'windDirectionCompass',
       created: 'created',
-      applicableDate: 'applicableDate',
+      applicableDate: DateTime.parse('2022-03-22T15:46:17.995757-04:00'),
       minTemp: 1.2,
       maxTemp: 1.2,
       theTemp: 1.2,

@@ -1,6 +1,19 @@
 import 'package:domain/utils/conversion_util.dart';
 import 'package:equatable/equatable.dart';
 
+enum WeatherStateEnum {
+  snow,
+  sleet,
+  hail,
+  thunderstorm,
+  heavyRain,
+  ligtRain,
+  showers,
+  heavyCloud,
+  lightCloud,
+  clear,
+}
+
 class ConsolidatedWeather extends Equatable {
   const ConsolidatedWeather({
     required this.id,
@@ -25,7 +38,7 @@ class ConsolidatedWeather extends Equatable {
   final String? weatherStateAbbr;
   final String? windDirectionCompass;
   final String? created;
-  final String? applicableDate;
+  final DateTime? applicableDate;
 
   /// Min Temp in Celcius
   final double? minTemp;
@@ -54,13 +67,44 @@ class ConsolidatedWeather extends Equatable {
   double? get windSpeedKm => windSpeed != null ? milesPerHourToKiliometerPerHour(windSpeed!) : null;
   double? get visibilityKm => visibility != null ? milesPerHourToKiliometerPerHour(visibility!) : null;
 
+  WeatherStateEnum? get weatherStateEnum {
+    if (weatherStateAbbr != null) {
+      switch (weatherStateAbbr) {
+        case 'c':
+          return WeatherStateEnum.clear;
+        case 'h':
+          return WeatherStateEnum.hail;
+        case 'hc':
+          return WeatherStateEnum.heavyCloud;
+        case 'hr':
+          return WeatherStateEnum.heavyRain;
+        case 'lc':
+          return WeatherStateEnum.lightCloud;
+        case 'lr':
+          return WeatherStateEnum.ligtRain;
+        case 's':
+          return WeatherStateEnum.showers;
+        case 'sl':
+          return WeatherStateEnum.sleet;
+        case 'sn':
+          return WeatherStateEnum.snow;
+        case 't':
+          return WeatherStateEnum.thunderstorm;
+        default:
+          return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
   ConsolidatedWeather copyWith({
     int? id,
     String? weatherStateName,
     String? weatherStateAbbr,
     String? windDirectionCompass,
     String? created,
-    String? applicableDate,
+    DateTime? applicableDate,
     double? minTemp,
     double? maxTemp,
     double? theTemp,

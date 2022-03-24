@@ -8,29 +8,21 @@ class WeatherForPlace extends Equatable {
     required this.woeid,
     required this.lattLong,
     required this.timezone,
-    required List<ConsolidatedWeather> consolidatedWeather,
+    required this.consolidatedWeather,
     required this.time,
     required this.sunRise,
     required this.sunSet,
-  }) : _consolidatedWeather = consolidatedWeather;
+  });
 
   final String title;
   final String locationType;
   final int woeid;
   final String lattLong;
   final String timezone;
-  final List<ConsolidatedWeather> _consolidatedWeather;
+  final List<ConsolidatedWeather> consolidatedWeather;
   final DateTime time;
   final DateTime sunRise;
   final DateTime sunSet;
-
-  ConsolidatedWeather? get consolidatedWeather {
-    if (_consolidatedWeather.isNotEmpty) {
-      return _consolidatedWeather.first;
-    } else {
-      return null;
-    }
-  }
 
   WeatherForPlace copyWith({
     String? title,
@@ -49,7 +41,7 @@ class WeatherForPlace extends Equatable {
       woeid: woeid ?? this.woeid,
       lattLong: lattLong ?? this.lattLong,
       timezone: timezone ?? this.timezone,
-      consolidatedWeather: consolidatedWeather ?? _consolidatedWeather,
+      consolidatedWeather: consolidatedWeather ?? this.consolidatedWeather,
       time: time ?? this.time,
       sunRise: sunRise ?? this.sunRise,
       sunSet: sunSet ?? this.sunSet,
@@ -63,6 +55,6 @@ class WeatherForPlace extends Equatable {
         woeid,
         lattLong,
         timezone,
-        _consolidatedWeather,
+        consolidatedWeather,
       ];
 }

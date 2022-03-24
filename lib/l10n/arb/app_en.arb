@@ -1,35 +1,48 @@
 {
     "@@locale": "en",
-    "celciusDegreeSufix": "°C",
+    "celciusDegreeSufix": "{temp} °C",
     "@celciusDegreeSufix": {
-        "description": "Text shown in Weather Page as suffix for temp in Celcius"
+        "description": "Text shown in Weather Page as suffix for temp in Celcius",
+        "placeholders": {
+            "temp": {
+                "type": "double",
+                "format": "decimalPattern"
+            }
+        }
     },
-    "fahrenheitDegreeSufix": "°F",
+    "fahrenheitDegreeSufix": "{temp} °F",
     "@fahrenheitDegreeSufix": {
-        "description": "Text shown in Weather Page as suffix for temp in Fahrenheit"
+        "description": "Text shown in Weather Page as suffix for temp in Fahrenheit",
+        "placeholders": {
+            "temp": {
+                "type": "double",
+                "format": "decimalPattern"
+            }
+        }
     },
-    "highAbbreviation": "H: {highTemp}{suffix}",
-    "@highAbbreviation": {
+    "highAbbreviationPrefix": "H: {temp}",
+    "@highAbbreviationPrefix": {
         "description": "Text shown in Weather Page as temperature high",
         "placeholders": {
-            "highTemp": {
-              "type": "double",
-              "format": "decimalPattern"
-            },
-            "suffix": {
+            "temp": {
                 "type": "String"
             }
         }
     },
-    "lowAbbreviation": "L: {lowTemp}{suffix}",
-    "@lowAbbreviation": {
+    "lowAbbreviationPrefix": "L: {temp}",
+    "@lowAbbreviationPrefix": {
         "description": "Text shown in Weather Page as temperature low",
         "placeholders": {
-            "lowTemp": {
-              "type": "double",
-              "format": "decimalPattern"
-            },
-            "suffix": {
+            "temp": {
+                "type": "String"
+            }
+        }
+    },
+    "avgAbbreviationPrefix": "Avg: {temp}",
+    "@avgAbbreviationPrefix": {
+        "description": "Text shown in Weather Page as temperature low",
+        "placeholders": {
+            "temp": {
                 "type": "String"
             }
         }
@@ -41,6 +54,16 @@
     "metric": "Metric",
     "@metric": {
         "description": "Text shown in conversion button on Weather Page"
+    },
+    "forecastForDays": "{days} days forecast",
+    "@forecastForDays": {
+        "description": "Text shown in summary tile on Weather Page",
+        "description": "Text shown in Weather Page as temperature low",
+        "placeholders": {
+            "days": {
+                "type": "int"
+            }
+        }
     },
     "sunrise": "Sunrise",
     "@sunrise": {

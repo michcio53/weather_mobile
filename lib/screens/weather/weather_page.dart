@@ -36,17 +36,14 @@ class WeatherPageBody extends StatelessWidget {
           case WeatherStatus.loading:
             return const WeatherBodyLoading();
           case WeatherStatus.success:
-            final weatherForPlace = state.weatherForPlace;
-            final consolidatedWeather = weatherForPlace?.consolidatedWeather;
-
-            if (weatherForPlace != null && consolidatedWeather != null) {
+            if (state.isWeatherDataNotEmpty) {
               return WeatherBodySuccess(
-                weatherForPlace: weatherForPlace,
-                consolidatedWeather: consolidatedWeather,
+                weatherForPlace: state.weatherForPlace!,
+                consolidatedWeather: state.weatherForPlace!.consolidatedWeather,
                 unitsEnum: state.unitsEnum,
               );
             } else {
-              return const SizedBox();
+              return const WeatherBodyFailure();
             }
           case WeatherStatus.failure:
             return const WeatherBodyFailure();

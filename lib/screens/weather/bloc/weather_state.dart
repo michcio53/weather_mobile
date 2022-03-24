@@ -21,6 +21,11 @@ class WeatherState extends Equatable {
   final WeatherStatus weatherStatus;
   final UnitsEnum unitsEnum;
 
+  bool get isWeatherDataNotEmpty {
+    final consolidatedWeather = weatherForPlace?.consolidatedWeather;
+    return weatherForPlace != null && consolidatedWeather != null && consolidatedWeather.isNotEmpty;
+  }
+
   WeatherState copyWith({
     WeatherForPlace? weatherForPlace,
     WeatherStatus? weatherStatus,

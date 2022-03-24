@@ -7,8 +7,9 @@ import 'package:weather_mobile/app/theme.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 import 'package:weather_mobile/screens/weather/widget/weather_info_tile.dart';
-import 'package:weather_mobile/utils/format_util.dart';
+import 'package:weather_mobile/screens/weather/widget/weather_overview.dart';
 import 'package:weather_mobile/utils/string_utils.dart';
+import 'package:weather_mobile/utils/units_util.dart';
 
 class WeatherBodySuccess extends StatelessWidget {
   const WeatherBodySuccess({
@@ -19,47 +20,24 @@ class WeatherBodySuccess extends StatelessWidget {
   }) : super(key: key);
 
   final WeatherForPlace weatherForPlace;
-  final ConsolidatedWeather consolidatedWeather;
+  final List<ConsolidatedWeather> consolidatedWeather;
   final UnitsEnum unitsEnum;
-
-  double? get _theTemp {
-    switch (unitsEnum) {
-      case UnitsEnum.imperial:
-        return consolidatedWeather.theTempFahrenheit?.roundToOneDigitAfterComa();
-      case UnitsEnum.metric:
-        return consolidatedWeather.theTemp?.roundToOneDigitAfterComa();
-    }
-  }
-
-  double? get _maxTemp {
-    switch (unitsEnum) {
-      case UnitsEnum.imperial:
-      case UnitsEnum.metric:
-        return consolidatedWeather.maxTemp?.roundToOneDigitAfterComa();
-    }
-  }
-
-  double? get _minTemp {
-    switch (unitsEnum) {
-      case UnitsEnum.imperial:
-        return consolidatedWeather.minTempFahrenheit?.roundToOneDigitAfterComa();
-
-      case UnitsEnum.metric:
-        return consolidatedWeather.minTemp?.roundToOneDigitAfterComa();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    final weatherStateName = consolidatedWeather.weatherStateName;
-    final windSpeedKm = consolidatedWeather.windSpeedKm;
-    final windSpeed = consolidatedWeather.windSpeed;
-    final windDirectionCompass = consolidatedWeather.windDirectionCompass;
-    final visibilityKm = consolidatedWeather.visibilityKm;
-    final visibility = consolidatedWeather.visibility;
-    final predictability = consolidatedWeather.predictability;
-    final airPressure = consolidatedWeather.airPressure;
-    final humidity = consolidatedWeather.humidity;
+    final todaysConsolidatedWeather = consolidatedWeather.first;
+    final weatherStateName = todaysConsolidatedWeather.weatherStateName;
+    final windSpeedKm = todaysConsolidatedWeather.windSpeedKm;
+    final windSpeed = todaysConsolidatedWeather.windSpeed;
+    final windDirectionCompass = todaysConsolidatedWeather.windDirectionCompass;
+    final visibilityKm = todaysConsolidatedWeather.visibilityKm;
+    final visibility = todaysConsolidatedWeather.visibility;
+    final predictability = todaysConsolidatedWeather.predictability;
+    final airPressure = todaysConsolidatedWeather.airPressure;
+    final humidity = todaysConsolidatedWeather.humidity;
+    final highTemp = todaysConsolidatedWeather.calculatedMaxTemp(unitsEnum);
+    final lowTemp = todaysConsolidatedWeather.calculatedMinTemp(unitsEnum);
+    final temp = todaysConsolidatedWeather.calculatedTemp(unitsEnum);
 
     return RefreshIndicator(
       onRefresh: () async => context.read<WeatherBloc>().add(WeatherStarted()),
@@ -77,9 +55,9 @@ class WeatherBodySuccess extends StatelessWidget {
                   style: context.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
-                if (_theTemp != null)
+                if (temp != null)
                   Text(
-                    '$_theTemp ${unitsEnum.toDegreeString(context.l10n)}',
+                    unitsEnum.toDegreeString(context.l10n, temp),
                     style: context.textTheme.headline1?.copyWith(fontSize: FontSizes.xxxLarge),
                     textAlign: TextAlign.center,
                   ),
@@ -92,17 +70,29 @@ class WeatherBodySuccess extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 const SizedBox(height: Insets.small),
-                if (_maxTemp != null && _minTemp != null)
+                if (highTemp != null && lowTemp != null)
                   HighLowTemperatureRow(
                     unitsEnum: unitsEnum,
-                    maxTemp: _maxTemp!,
-                    minTemp: _minTemp!,
+                    maxTemp: highTemp,
+                    minTemp: lowTemp,
                   ),
                 const SizedBox(
                   height: Insets.medium,
                 ),
               ],
             ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: Insets.medium),
+            sliver: SliverToBoxAdapter(
+              child: WeatherOverview(
+                consolidatedWeather: consolidatedWeather,
+                unitsEnum: unitsEnum,
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: Insets.medium),
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: Insets.medium),
@@ -168,9 +158,11 @@ class HighLowTemperatureRow extends StatelessWidget {
       children: [
         Flexible(
           child: Text(
-            context.l10n.highAbbreviation(
-              maxTemp,
-              unitsEnum.toDegreeString(context.l10n),
+            context.l10n.highAbbreviationPrefix(
+              unitsEnum.toDegreeString(
+                context.l10n,
+                maxTemp,
+              ),
             ),
             key: const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text'),
             style: context.textTheme.bodyLarge,
@@ -179,9 +171,11 @@ class HighLowTemperatureRow extends StatelessWidget {
         const SizedBox(width: Insets.small),
         Flexible(
           child: Text(
-            context.l10n.lowAbbreviation(
-              minTemp,
-              unitsEnum.toDegreeString(context.l10n),
+            context.l10n.lowAbbreviationPrefix(
+              unitsEnum.toDegreeString(
+                context.l10n,
+                minTemp,
+              ),
             ),
             key: const ValueKey('HighLowTemperatureRow_displayedMinTemp_text'),
             style: context.textTheme.bodyLarge,

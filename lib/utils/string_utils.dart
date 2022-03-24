@@ -2,12 +2,12 @@ import 'package:weather_mobile/l10n/l10n.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
 
 extension UnitsEnumExtension on UnitsEnum {
-  String toDegreeString(AppLocalizations appLocalizations) {
+  String toDegreeString(AppLocalizations appLocalizations, double temp) {
     switch (this) {
       case UnitsEnum.imperial:
-        return appLocalizations.fahrenheitDegreeSufix;
+        return appLocalizations.fahrenheitDegreeSufix(temp);
       case UnitsEnum.metric:
-        return appLocalizations.celciusDegreeSufix;
+        return appLocalizations.celciusDegreeSufix(temp);
     }
   }
 

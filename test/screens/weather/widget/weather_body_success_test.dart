@@ -32,7 +32,7 @@ void main() {
         (tester) async {
           await tester.pumpApp(
             WeatherBodySuccess(
-              consolidatedWeather: consolidatedWeather,
+              consolidatedWeather: [consolidatedWeather],
               unitsEnum: UnitsEnum.metric,
               weatherForPlace: weatherForPlace,
             ),
@@ -51,7 +51,7 @@ void main() {
         (tester) async {
           await tester.pumpApp(
             WeatherBodySuccess(
-              consolidatedWeather: consolidatedWeather,
+              consolidatedWeather: [consolidatedWeather],
               unitsEnum: UnitsEnum.metric,
               weatherForPlace: weatherForPlace,
             ),
@@ -79,7 +79,7 @@ void main() {
             BlocProvider<WeatherBloc>(
               create: (_) => mockWeatherBloc,
               child: WeatherBodySuccess(
-                consolidatedWeather: consolidatedWeather,
+                consolidatedWeather: [consolidatedWeather],
                 unitsEnum: UnitsEnum.metric,
                 weatherForPlace: weatherForPlace,
               ),
@@ -88,7 +88,13 @@ void main() {
 
           await tester.pump();
 
-          await tester.fling(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text')), const Offset(0, 700), 1000);
+          await tester.fling(
+            find.byKey(
+              const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text'),
+            ),
+            const Offset(0, 700),
+            1000,
+          );
           await tester.pump(const Duration(seconds: 1)); // finish the scroll animation
           await tester.pump(const Duration(seconds: 1)); // finish the indicator settle animation
           await tester.pump(const Duration(seconds: 1)); // finish the indicator hide animation
@@ -113,11 +119,11 @@ void main() {
 
         final maxTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text')));
-        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTemp?.roundToOneDigitAfterComa()}°C');
+        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTemp?.oneDigitAfterComa()} °C');
 
         final minTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMinTemp_text')));
-        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTemp?.roundToOneDigitAfterComa()}°C');
+        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTemp?.oneDigitAfterComa()} °C');
       },
     );
 
@@ -127,30 +133,30 @@ void main() {
         await tester.pumpApp(
           HighLowTemperatureRow(
             unitsEnum: UnitsEnum.imperial,
-            maxTemp: consolidatedWeather.maxTempFahrenheit!.roundToOneDigitAfterComa(),
-            minTemp: consolidatedWeather.minTempFahrenheit!.roundToOneDigitAfterComa(),
+            maxTemp: consolidatedWeather.maxTempFahrenheit!.oneDigitAfterComa(),
+            minTemp: consolidatedWeather.minTempFahrenheit!.oneDigitAfterComa(),
           ),
         );
 
         final maxTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text')));
-        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTempFahrenheit?.roundToOneDigitAfterComa()}°F');
+        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTempFahrenheit?.oneDigitAfterComa()} °F');
 
         final minTempWidget =
             tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMinTemp_text')));
-        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTempFahrenheit?.roundToOneDigitAfterComa()}°F');
+        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTempFahrenheit?.oneDigitAfterComa()} °F');
       },
     );
   });
 }
 
-const consolidatedWeather = ConsolidatedWeather(
+final consolidatedWeather = ConsolidatedWeather(
   id: 123,
   weatherStateName: 'weatherStateName',
   weatherStateAbbr: 'weatherStateAbbr',
   windDirectionCompass: 'windDirectionCompass',
   created: 'created',
-  applicableDate: 'applicableDate',
+  applicableDate: DateTime.parse('2022-03-22T15:46:17.995757-04:00'),
   minTemp: 1.2,
   maxTemp: 1.2,
   theTemp: 1.2,
@@ -168,7 +174,7 @@ final weatherForPlace = WeatherForPlace(
   woeid: 123,
   lattLong: 'lattLong',
   timezone: 'timezone',
-  consolidatedWeather: const [
+  consolidatedWeather: [
     consolidatedWeather,
   ],
   sunRise: DateTime.now(),
