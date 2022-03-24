@@ -10,23 +10,12 @@ class WeatherPageBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<WeatherBloc>();
     return SafeArea(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const ConversionSwitch(),
-          IconButton(
-            onPressed: () async {
-              final result = await Navigator.of(context).pushNamed(SearchPage.routeName);
-              if (result is int) {
-                bloc.add(WeatherItemChoosed(woeid: result));
-              }
-            },
-            icon: const Icon(
-              Icons.search,
-            ),
-          )
+        children: const [
+          ConversionSwitch(),
+          SearchIconButton(),
         ],
       ),
     );
@@ -41,8 +30,35 @@ class ConversionSwitch extends StatelessWidget {
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) {
         return TextButton(
-          onPressed: () => context.read<WeatherBloc>().add(WeatherConversionChanged()),
+          onPressed: state.isLoading ? null : () => context.read<WeatherBloc>().add(WeatherConversionChanged()),
           child: Text(state.unitsEnum.toStringValue(context.l10n)),
+        );
+      },
+    );
+  }
+}
+
+class SearchIconButton extends StatelessWidget {
+  const SearchIconButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WeatherBloc, WeatherState>(
+      builder: (context, state) {
+        final bloc = context.read<WeatherBloc>();
+
+        return IconButton(
+          onPressed: state.isLoading
+              ? null
+              : () async {
+                  final result = await Navigator.of(context).pushNamed(SearchPage.routeName);
+                  if (result is int) {
+                    bloc.add(WeatherItemChoosed(woeid: result));
+                  }
+                },
+          icon: const Icon(
+            Icons.search,
+          ),
         );
       },
     );
