@@ -73,7 +73,7 @@ class WeatherInfoTile extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.grey,
+          color: context.palette.primaryColor,
           width: 2,
         ),
         borderRadius: const BorderRadius.all(
@@ -116,11 +116,11 @@ class WeatherInfoTileTime extends StatelessWidget {
           ],
         ),
         const SizedBox(height: Insets.xSmall),
-        Text(
-          sunRise.toTimeString(),
-          key: const ValueKey('weatherInfoTileTime_sunRise_text'),
-          style: const TextStyle(
-            fontSize: FontSizes.xLarge,
+        Center(
+          child: Text(
+            sunRise.toTimeString(),
+            key: const ValueKey('weatherInfoTileTime_sunRise_text'),
+            style: const TextStyle(fontSize: FontSizes.xLarge),
           ),
         ),
         const SizedBox(height: Insets.large),
@@ -137,11 +137,11 @@ class WeatherInfoTileTime extends StatelessWidget {
           ],
         ),
         const SizedBox(height: Insets.xSmall),
-        Text(
-          sunSet.toTimeString(),
-          key: const ValueKey('weatherInfoTileTime_sunSet_text'),
-          style: const TextStyle(
-            fontSize: FontSizes.xLarge,
+        Center(
+          child: Text(
+            sunSet.toTimeString(),
+            key: const ValueKey('weatherInfoTileTime_sunSet_text'),
+            style: const TextStyle(fontSize: FontSizes.xLarge),
           ),
         ),
       ],
@@ -188,17 +188,23 @@ class WeatherInfoTileWind extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: Insets.large),
-        Text(
-          windDirectionCompass,
-          key: const ValueKey('weatherInfoTileWind_windDirectionCompass_text'),
-          style: const TextStyle(fontSize: FontSizes.xxLarge),
-        ),
-        const SizedBox(height: Insets.large),
-        Text(
-          _windSpeed(context),
-          key: const ValueKey('weatherInfoTileWinde_windSpeed_text'),
-          style: const TextStyle(fontSize: FontSizes.large),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                windDirectionCompass,
+                key: const ValueKey('weatherInfoTileWind_windDirectionCompass_text'),
+                style: const TextStyle(fontSize: FontSizes.xxLarge),
+              ),
+              const SizedBox(height: Insets.large),
+              Text(
+                _windSpeed(context),
+                key: const ValueKey('weatherInfoTileWinde_windSpeed_text'),
+                style: const TextStyle(fontSize: FontSizes.large),
+              )
+            ],
+          ),
         )
       ],
     );
@@ -230,12 +236,18 @@ class WeatherInfoTileHumidity extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: Insets.large),
-        Center(
-          child: Text(
-            context.l10n.percentage(humidityInPercentage),
-            key: const ValueKey('weatherInfoTileHumidity_humidityInPercentage_text'),
-            style: const TextStyle(fontSize: FontSizes.xxLarge),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  context.l10n.percentage(humidityInPercentage),
+                  key: const ValueKey('weatherInfoTileHumidity_humidityInPercentage_text'),
+                  style: const TextStyle(fontSize: FontSizes.xxLarge),
+                ),
+              )
+            ],
           ),
         ),
       ],
@@ -282,11 +294,20 @@ class WeatherInfoTileVisibility extends StatelessWidget {
           ],
         ),
         const SizedBox(height: Insets.large),
-        Text(
-          _visibility(context),
-          key: const ValueKey('weatherInfoTileVisibility_visibility_text'),
-          style: const TextStyle(fontSize: FontSizes.xxLarge),
-        )
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  _visibility(context),
+                  key: const ValueKey('weatherInfoTileVisibility_visibility_text'),
+                  style: const TextStyle(fontSize: FontSizes.xxLarge),
+                ),
+              )
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -317,14 +338,21 @@ class WeatherInfoTileAirPressure extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: Insets.large),
-        Center(
-          child: Text(
-            context.l10n.hectopascalSuffix(airPressureInMbar),
-            key: const ValueKey('weatherInfoTileAirPressure_airPressureInMbar_text'),
-            style: const TextStyle(fontSize: FontSizes.xxLarge),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  context.l10n.hectopascalSuffix(airPressureInMbar),
+                  key: const ValueKey('weatherInfoTileAirPressure_airPressureInMbar_text'),
+                  style: const TextStyle(fontSize: FontSizes.xxLarge),
+                  textAlign: TextAlign.center,
+                ),
+              )
+            ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -355,14 +383,20 @@ class WeatherInfoTilePredictability extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: Insets.large),
-        Center(
-          child: Text(
-            context.l10n.percentage(predictabilityInPercentage),
-            key: const ValueKey('weatherInfoTilePredictability_predictabilityInPercentage_text'),
-            style: const TextStyle(fontSize: FontSizes.xxLarge),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  context.l10n.percentage(predictabilityInPercentage),
+                  key: const ValueKey('weatherInfoTilePredictability_predictabilityInPercentage_text'),
+                  style: const TextStyle(fontSize: FontSizes.xxLarge),
+                ),
+              )
+            ],
           ),
-        )
+        ),
       ],
     );
   }

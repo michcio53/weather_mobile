@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_mobile/app/theme.dart';
 import 'package:weather_mobile/l10n/l10n.dart';
 import 'package:weather_mobile/screens/search/search_page.dart';
 import 'package:weather_mobile/screens/weather/bloc/weather_bloc.dart';
@@ -10,13 +11,26 @@ class WeatherPageBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          ConversionSwitch(),
-          SearchIconButton(),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          ),
         ],
+        color: context.theme.backgroundColor,
+      ),
+      child: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            ConversionSwitch(),
+            SearchIconButton(),
+          ],
+        ),
       ),
     );
   }

@@ -76,9 +76,10 @@ class DarkPalette extends Palette {
 
 class AppTheme {
   static Palette paletteOf(BuildContext context) {
-    if (context.theme.brightness == Brightness.light) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+    if (brightness == Brightness.light) {
       return LightPalette();
-    } else if (context.theme.brightness == Brightness.dark) {
+    } else if (brightness == Brightness.dark) {
       return DarkPalette();
     } else {
       return LightPalette();

@@ -23,7 +23,7 @@ class WeatherOverview extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.grey,
+          color: context.palette.primaryColor,
           width: 2,
         ),
         borderRadius: const BorderRadius.all(
