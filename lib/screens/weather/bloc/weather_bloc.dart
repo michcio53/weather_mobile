@@ -10,7 +10,8 @@ part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc({
-    required GetWeatherForSavedLocationUseCase getWeatherForSavedLocationUseCase,
+    required GetWeatherForSavedLocationUseCase
+        getWeatherForSavedLocationUseCase,
     required SaveLocationIdUseCase saveLocationIdUseCase,
   })  : _getWeatherForSavedLocationUseCase = getWeatherForSavedLocationUseCase,
         _saveLocationIdUseCase = saveLocationIdUseCase,

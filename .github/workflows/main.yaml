@@ -21,16 +21,14 @@ jobs:
           flutter-version: ${{env.flutter_version}}
           channel: ${{env.flutter_channel}}
           cache: true
-
-      - name: 📦 Install VeryGoodCLI
-        run: |
-          flutter pub global activate very_good_cli
-          very_good --analytics false
           
       - name: 📦 Install Dependencies
         run: |
-          chmod +x ci_prepare_all.sh
-          ./ci_prepare_all.sh
+          chmod +x ci_get_all_packages.sh
+          ./ci_get_all_packages.sh
+
+      - name: 🕵️ Analyze
+        run: flutter analyze
 
       - name: 🧪 Run Tests
         run: |

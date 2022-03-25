@@ -39,9 +39,9 @@ You can do it by using this command
 
 ```sh
 # sets permission to file
-chmod +x get_all_packages.sh
+chmod +x ci_get_all_packages.sh
 # pulls packages for all layers
-./get_all_packages.sh 
+./ci_get_all_packages.sh 
 ```
 
 This project contains 3 flavors:
