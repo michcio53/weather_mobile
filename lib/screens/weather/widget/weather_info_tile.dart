@@ -166,7 +166,8 @@ class WeatherInfoTileWind extends StatelessWidget {
   String _windSpeed(BuildContext context) {
     switch (unitsEnum) {
       case UnitsEnum.imperial:
-        return context.l10n.milesPerHourSuffix(windSpeedMph.oneDigitAfterComa());
+        return context.l10n
+            .milesPerHourSuffix(windSpeedMph.oneDigitAfterComa());
       case UnitsEnum.metric:
         return context.l10n.kmPerHourSuffix(windSpeedKm.oneDigitAfterComa());
     }
@@ -194,7 +195,9 @@ class WeatherInfoTileWind extends StatelessWidget {
             children: [
               Text(
                 windDirectionCompass,
-                key: const ValueKey('weatherInfoTileWind_windDirectionCompass_text'),
+                key: const ValueKey(
+                  'weatherInfoTileWind_windDirectionCompass_text',
+                ),
                 style: const TextStyle(fontSize: FontSizes.xxLarge),
               ),
               const SizedBox(height: Insets.large),
@@ -243,7 +246,9 @@ class WeatherInfoTileHumidity extends StatelessWidget {
               Center(
                 child: Text(
                   context.l10n.percentage(humidityInPercentage),
-                  key: const ValueKey('weatherInfoTileHumidity_humidityInPercentage_text'),
+                  key: const ValueKey(
+                    'weatherInfoTileHumidity_humidityInPercentage_text',
+                  ),
                   style: const TextStyle(fontSize: FontSizes.xxLarge),
                 ),
               )
@@ -301,7 +306,9 @@ class WeatherInfoTileVisibility extends StatelessWidget {
               Center(
                 child: Text(
                   _visibility(context),
-                  key: const ValueKey('weatherInfoTileVisibility_visibility_text'),
+                  key: const ValueKey(
+                    'weatherInfoTileVisibility_visibility_text',
+                  ),
                   style: const TextStyle(fontSize: FontSizes.xxLarge),
                 ),
               )
@@ -345,7 +352,9 @@ class WeatherInfoTileAirPressure extends StatelessWidget {
               Center(
                 child: Text(
                   context.l10n.hectopascalSuffix(airPressureInMbar),
-                  key: const ValueKey('weatherInfoTileAirPressure_airPressureInMbar_text'),
+                  key: const ValueKey(
+                    'weatherInfoTileAirPressure_airPressureInMbar_text',
+                  ),
                   style: const TextStyle(fontSize: FontSizes.xxLarge),
                   textAlign: TextAlign.center,
                 ),
@@ -390,7 +399,9 @@ class WeatherInfoTilePredictability extends StatelessWidget {
               Center(
                 child: Text(
                   context.l10n.percentage(predictabilityInPercentage),
-                  key: const ValueKey('weatherInfoTilePredictability_predictabilityInPercentage_text'),
+                  key: const ValueKey(
+                    'weatherInfoTilePredictability_predictabilityInPercentage_text',
+                  ),
                   style: const TextStyle(fontSize: FontSizes.xxLarge),
                 ),
               )

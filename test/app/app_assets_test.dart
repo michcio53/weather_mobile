@@ -6,15 +6,69 @@ void main() {
   test('check if Assets coreectly map weatherState', () {
     final consolidatedWeatherClear = consolidatedWeather;
     expect(consolidatedWeatherClear.weatherStateEnum?.toAsset(), AppAssets.c);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 'h').weatherStateEnum?.toAsset(), AppAssets.h);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 'hc').weatherStateEnum?.toAsset(), AppAssets.hc);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 'hr').weatherStateEnum?.toAsset(), AppAssets.hr);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 'lc').weatherStateEnum?.toAsset(), AppAssets.lc);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 'lr').weatherStateEnum?.toAsset(), AppAssets.lr);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 's').weatherStateEnum?.toAsset(), AppAssets.s);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 'sl').weatherStateEnum?.toAsset(), AppAssets.sl);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 'sn').weatherStateEnum?.toAsset(), AppAssets.sn);
-    expect(consolidatedWeatherClear.copyWith(weatherStateAbbr: 't').weatherStateEnum?.toAsset(), AppAssets.t);
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 'h')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.h,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 'hc')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.hc,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 'hr')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.hr,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 'lc')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.lc,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 'lr')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.lr,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 's')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.s,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 'sl')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.sl,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 'sn')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.sn,
+    );
+    expect(
+      consolidatedWeatherClear
+          .copyWith(weatherStateAbbr: 't')
+          .weatherStateEnum
+          ?.toAsset(),
+      AppAssets.t,
+    );
   });
 }
 

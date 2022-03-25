@@ -12,7 +12,8 @@ void main() {
   group(
     'WeatherOverview',
     () {
-      testWidgets('renders WeatherOverview with correct childrens', (tester) async {
+      testWidgets('renders WeatherOverview with correct childrens',
+          (tester) async {
         await tester.pumpApp(
           WeatherOverview(
             consolidatedWeather: consolidatedWeather,
@@ -20,13 +21,17 @@ void main() {
           ),
         );
 
-        expect(find.byType(WeatherOverviewSingleTile), findsNWidgets(consolidatedWeather.length));
+        expect(
+          find.byType(WeatherOverviewSingleTile),
+          findsNWidgets(consolidatedWeather.length),
+        );
       });
     },
   );
 
   group('WeatherOverviewSingleTile', () {
-    testWidgets('renders WeatherOverviewSingleTile with correct childrens', (tester) async {
+    testWidgets('renders WeatherOverviewSingleTile with correct childrens',
+        (tester) async {
       await tester.pumpApp(
         WeatherOverviewSingleTile(
           singleConsolidatedWeather: consolidatedWeather.first,
@@ -38,7 +43,9 @@ void main() {
       expect(find.byType(SvgPicture), findsOneWidget);
     });
 
-    testWidgets('renders WeatherOverviewSingleTile with correct values for metrics', (tester) async {
+    testWidgets(
+        'renders WeatherOverviewSingleTile with correct values for metrics',
+        (tester) async {
       final singleConsolidatedWeather = consolidatedWeather.first;
 
       await tester.pumpApp(
@@ -48,18 +55,39 @@ void main() {
         ),
       );
 
-      final maxTempWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('WeatherOverviewSingleTile_highTemp_text')));
-      final minTempWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('WeatherOverviewSingleTile_lowTemp_text')));
-      final tempWidget = tester.firstWidget<Text>(find.byKey(const ValueKey('WeatherOverviewSingleTile_temp_text')));
+      final maxTempWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('WeatherOverviewSingleTile_highTemp_text'),
+        ),
+      );
+      final minTempWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('WeatherOverviewSingleTile_lowTemp_text'),
+        ),
+      );
+      final tempWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('WeatherOverviewSingleTile_temp_text'),
+        ),
+      );
 
-      expect(maxTempWidget.data, 'H: ${singleConsolidatedWeather.maxTemp?.oneDigitAfterComa()}');
-      expect(minTempWidget.data, 'L: ${singleConsolidatedWeather.minTemp?.oneDigitAfterComa()}');
-      expect(tempWidget.data, 'Avg: ${singleConsolidatedWeather.theTemp?.oneDigitAfterComa()}');
+      expect(
+        maxTempWidget.data,
+        'H: ${singleConsolidatedWeather.maxTemp?.oneDigitAfterComa()}',
+      );
+      expect(
+        minTempWidget.data,
+        'L: ${singleConsolidatedWeather.minTemp?.oneDigitAfterComa()}',
+      );
+      expect(
+        tempWidget.data,
+        'Avg: ${singleConsolidatedWeather.theTemp?.oneDigitAfterComa()}',
+      );
     });
 
-    testWidgets('renders WeatherOverviewSingleTile with correct values for imperial', (tester) async {
+    testWidgets(
+        'renders WeatherOverviewSingleTile with correct values for imperial',
+        (tester) async {
       final singleConsolidatedWeather = consolidatedWeather.first;
 
       await tester.pumpApp(
@@ -69,18 +97,39 @@ void main() {
         ),
       );
 
-      final maxTempWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('WeatherOverviewSingleTile_highTemp_text')));
-      final minTempWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('WeatherOverviewSingleTile_lowTemp_text')));
-      final tempWidget = tester.firstWidget<Text>(find.byKey(const ValueKey('WeatherOverviewSingleTile_temp_text')));
+      final maxTempWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('WeatherOverviewSingleTile_highTemp_text'),
+        ),
+      );
+      final minTempWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('WeatherOverviewSingleTile_lowTemp_text'),
+        ),
+      );
+      final tempWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('WeatherOverviewSingleTile_temp_text'),
+        ),
+      );
 
-      expect(maxTempWidget.data, 'H: ${singleConsolidatedWeather.maxTempFahrenheit?.oneDigitAfterComa()}');
-      expect(minTempWidget.data, 'L: ${singleConsolidatedWeather.minTempFahrenheit?.oneDigitAfterComa()}');
-      expect(tempWidget.data, 'Avg: ${singleConsolidatedWeather.theTempFahrenheit?.oneDigitAfterComa()}');
+      expect(
+        maxTempWidget.data,
+        'H: ${singleConsolidatedWeather.maxTempFahrenheit?.oneDigitAfterComa()}',
+      );
+      expect(
+        minTempWidget.data,
+        'L: ${singleConsolidatedWeather.minTempFahrenheit?.oneDigitAfterComa()}',
+      );
+      expect(
+        tempWidget.data,
+        'Avg: ${singleConsolidatedWeather.theTempFahrenheit?.oneDigitAfterComa()}',
+      );
     });
-    
-    testWidgets('renders WeatherOverviewSingleTile without icon values if its incorrect', (tester) async {
+
+    testWidgets(
+        'renders WeatherOverviewSingleTile without icon values if its incorrect',
+        (tester) async {
       final singleConsolidatedWeather = consolidatedWeather.last;
 
       await tester.pumpApp(

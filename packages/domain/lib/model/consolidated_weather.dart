@@ -61,11 +61,16 @@ class ConsolidatedWeather extends Equatable {
   final double? visibility;
   final int? predictability;
 
-  double? get theTempFahrenheit => theTemp != null ? celciusToFehrenheit(theTemp!) : null;
-  double? get maxTempFahrenheit => maxTemp != null ? celciusToFehrenheit(maxTemp!) : null;
-  double? get minTempFahrenheit => minTemp != null ? celciusToFehrenheit(minTemp!) : null;
-  double? get windSpeedKm => windSpeed != null ? milesPerHourToKiliometerPerHour(windSpeed!) : null;
-  double? get visibilityKm => visibility != null ? milesPerHourToKiliometerPerHour(visibility!) : null;
+  double? get theTempFahrenheit =>
+      theTemp != null ? celciusToFehrenheit(theTemp!) : null;
+  double? get maxTempFahrenheit =>
+      maxTemp != null ? celciusToFehrenheit(maxTemp!) : null;
+  double? get minTempFahrenheit =>
+      minTemp != null ? celciusToFehrenheit(minTemp!) : null;
+  double? get windSpeedKm =>
+      windSpeed != null ? milesPerHourToKiliometerPerHour(windSpeed!) : null;
+  double? get visibilityKm =>
+      visibility != null ? milesPerHourToKiliometerPerHour(visibility!) : null;
 
   WeatherStateEnum? get weatherStateEnum {
     if (weatherStateAbbr != null) {

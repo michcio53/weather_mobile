@@ -21,7 +21,8 @@ class WeatherForPlaceModel extends Equatable {
     required this.consolidatedWeather,
   });
 
-  factory WeatherForPlaceModel.fromJson(Map<String, dynamic> json) => _$WeatherForPlaceModelFromJson(json);
+  factory WeatherForPlaceModel.fromJson(Map<String, dynamic> json) =>
+      _$WeatherForPlaceModelFromJson(json);
 
   final String title;
   final String locationType;

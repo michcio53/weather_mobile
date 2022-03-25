@@ -3,7 +3,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('check if model correctly maps the fields', () async {
-    final consolodatedWeather = ConsolidatedWeatherModel.fromJson(consolidatedWeatherModel);
+    final consolodatedWeather =
+        ConsolidatedWeatherModel.fromJson(consolidatedWeatherModel);
     expect(consolodatedWeather.id, 5881096244822016);
     expect(consolodatedWeather.created, '2022-03-23T03:59:46.543167Z');
     expect(consolodatedWeather.minTemp, 5.67);
@@ -12,7 +13,8 @@ void main() {
   });
 
   test('check if model creates json', () {
-    final consolidatedWeather = ConsolidatedWeatherModel.fromJson(consolidatedWeatherModel);
+    final consolidatedWeather =
+        ConsolidatedWeatherModel.fromJson(consolidatedWeatherModel);
     final jsonModel = consolidatedWeather.toJson();
     jsonModel['max_temp'] = null;
     expect(jsonModel, consolidatedWeatherModel);

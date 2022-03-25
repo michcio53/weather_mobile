@@ -74,7 +74,8 @@ class WeatherOverviewSingleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final applicableDate = singleConsolidatedWeather.applicableDate?.toDayAndMonth();
+    final applicableDate =
+        singleConsolidatedWeather.applicableDate?.toDayAndMonth();
     final asset = singleConsolidatedWeather.weatherStateEnum?.toAsset();
     final highTemp = singleConsolidatedWeather.calculatedMaxTemp(unitsEnum);
     final lowTemp = singleConsolidatedWeather.calculatedMinTemp(unitsEnum);
@@ -100,7 +101,8 @@ class WeatherOverviewSingleTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   context.l10n.highAbbreviationPrefix(highTemp.toString()),
-                  key: const ValueKey('WeatherOverviewSingleTile_highTemp_text'),
+                  key:
+                      const ValueKey('WeatherOverviewSingleTile_highTemp_text'),
                   style: context.textTheme.bodyLarge,
                 ),
               ),

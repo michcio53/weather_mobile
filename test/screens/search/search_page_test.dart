@@ -13,7 +13,8 @@ import 'package:weather_mobile/screens/search/widget/serach_body_initial.dart';
 import '../../helpers/pump_app.dart';
 import 'widget/search_body_success_test.dart';
 
-class MockSearchBloc extends MockBloc<SearchEvent, SearchState> implements SearchBloc {}
+class MockSearchBloc extends MockBloc<SearchEvent, SearchState>
+    implements SearchBloc {}
 
 class FakeSearchTyped extends Fake implements SearchTyped {}
 
@@ -55,7 +56,8 @@ void main() {
       expect(find.byType(SearchBodyInitial), findsOneWidget);
     });
 
-    testWidgets('renders SearchBodyLoading for SearchBodyLoading', (tester) async {
+    testWidgets('renders SearchBodyLoading for SearchBodyLoading',
+        (tester) async {
       when(() => mockSearchBloc.state).thenReturn(SearchLoading());
 
       await tester.pumpApp(
@@ -69,7 +71,8 @@ void main() {
     });
 
     testWidgets('renders SearchBodySuccess for SearchSuccess', (tester) async {
-      when(() => mockSearchBloc.state).thenReturn(const SearchSuccess(locations: []));
+      when(() => mockSearchBloc.state)
+          .thenReturn(const SearchSuccess(locations: []));
 
       await tester.pumpApp(
         BlocProvider<SearchBloc>(

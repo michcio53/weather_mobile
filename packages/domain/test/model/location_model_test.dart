@@ -10,8 +10,10 @@ void main() {
       woeid: 123,
     );
     final locationWithChangedTitle = location.copyWith(title: 'newTitle');
-    final locationWithChangedLocationType = location.copyWith(locationType: 'newLocationType');
-    final locationWithChangedLatLong = location.copyWith(lattLong: 'newLatLong');
+    final locationWithChangedLocationType =
+        location.copyWith(locationType: 'newLocationType');
+    final locationWithChangedLatLong =
+        location.copyWith(lattLong: 'newLatLong');
     final locationWithChangedWoeid = location.copyWith(woeid: 321);
 
     expect(locationWithChangedTitle.title, 'newTitle');

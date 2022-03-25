@@ -27,7 +27,9 @@ void main() {
     );
   });
 
-  test('Given correct parameters it invokes every method in usecase and returns weather model', () async {
+  test(
+      'Given correct parameters it invokes every method in usecase and returns weather model',
+      () async {
     when(() => mockWeatherDataSource.getWeatherFromId(any())).thenAnswer(
       (invocation) => TaskEither.right(weatherForPlace),
     );
@@ -59,7 +61,11 @@ void main() {
     verify(() => mockWeatherStore.getWoeid()).called(1);
     verify(() => mockWeatherDataSource.getWeatherFromId(any())).called(1);
 
-    result.fold((exceptionDetail) => expect(exceptionDetail, GetWeatherForSavedLocationFailure.unexpected), (r) {});
+    result.fold(
+      (exceptionDetail) =>
+          expect(exceptionDetail, GetWeatherForSavedLocationFailure.unexpected),
+      (_) {},
+    );
   });
 
   test(
@@ -76,7 +82,11 @@ void main() {
     verify(() => mockWeatherStore.getWoeid()).called(1);
     verifyNever(() => mockWeatherDataSource.getWeatherFromId(any()));
 
-    result.fold((exceptionDetail) => expect(exceptionDetail, GetWeatherForSavedLocationFailure.noWoeid), (r) {});
+    result.fold(
+      (exceptionDetail) =>
+          expect(exceptionDetail, GetWeatherForSavedLocationFailure.noWoeid),
+      (_) {},
+    );
   });
 }
 

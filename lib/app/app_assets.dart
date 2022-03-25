@@ -20,7 +20,8 @@ abstract class AppAssets {
 }
 
 extension Assets on BuildContext {
-  SvgPicture svgImage(String name, {Color? color, Size? size}) => SvgPicture.asset(
+  SvgPicture svgImage(String name, {Color? color, Size? size}) =>
+      SvgPicture.asset(
         name,
         color: color,
         width: size?.width,
@@ -44,7 +45,7 @@ extension WeatherStateEnumExtenstion on WeatherStateEnum {
       case WeatherStateEnum.ligtRain:
         return AppAssets.lr;
       case WeatherStateEnum.showers:
-       return AppAssets.s;
+        return AppAssets.s;
       case WeatherStateEnum.heavyCloud:
         return AppAssets.hc;
       case WeatherStateEnum.lightCloud:

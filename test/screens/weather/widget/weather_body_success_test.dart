@@ -12,7 +12,8 @@ import 'package:weather_mobile/utils/format_util.dart';
 
 import '../../../helpers/helpers.dart';
 
-class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState> implements WeatherBloc {}
+class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState>
+    implements WeatherBloc {}
 
 class FakeWeatherStarted extends Fake implements WeatherStarted {}
 
@@ -41,8 +42,22 @@ void main() {
           expect(find.byType(SliverList), findsOneWidget);
           expect(find.byType(SliverGrid), findsOneWidget);
           expect(find.byType(HighLowTemperatureRow), findsOneWidget);
-          expect(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text')), findsOneWidget);
-          expect(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text')), findsOneWidget);
+          expect(
+            find.byKey(
+              const ValueKey(
+                'WeatherBodySuccess_weatherForPlaceTitle_text',
+              ),
+            ),
+            findsOneWidget,
+          );
+          expect(
+            find.byKey(
+              const ValueKey(
+                'WeatherBodySuccess_weatherForPlaceWeatherStateName_text',
+              ),
+            ),
+            findsOneWidget,
+          );
         },
       );
 
@@ -57,13 +72,24 @@ void main() {
             ),
           );
 
-          final titleWidget =
-              tester.firstWidget<Text>(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text')));
+          final titleWidget = tester.firstWidget<Text>(
+            find.byKey(
+              const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text'),
+            ),
+          );
           expect(titleWidget.data, weatherForPlace.title);
 
-          final weatherStateNameWidget = tester
-              .firstWidget<Text>(find.byKey(const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text')));
-          expect(weatherStateNameWidget.data, consolidatedWeather.weatherStateName);
+          final weatherStateNameWidget = tester.firstWidget<Text>(
+            find.byKey(
+              const ValueKey(
+                'WeatherBodySuccess_weatherForPlaceWeatherStateName_text',
+              ),
+            ),
+          );
+          expect(
+            weatherStateNameWidget.data,
+            consolidatedWeather.weatherStateName,
+          );
         },
       );
 
@@ -95,9 +121,19 @@ void main() {
             const Offset(0, 700),
             1000,
           );
-          await tester.pump(const Duration(seconds: 1)); // finish the scroll animation
-          await tester.pump(const Duration(seconds: 1)); // finish the indicator settle animation
-          await tester.pump(const Duration(seconds: 1)); // finish the indicator hide animation
+          await tester.pump(
+            const Duration(seconds: 1),
+          ); // finish the scroll animation
+          await tester.pump(
+            const Duration(
+              seconds: 1,
+            ),
+          ); // finish the indicator settle animation
+          await tester.pump(
+            const Duration(
+              seconds: 1,
+            ),
+          ); // finish the indicator hide animation
 
           verify(() => mockWeatherBloc.add(any())).called(1);
         },
@@ -117,13 +153,25 @@ void main() {
           ),
         );
 
-        final maxTempWidget =
-            tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text')));
-        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTemp?.oneDigitAfterComa()} °C');
+        final maxTempWidget = tester.firstWidget<Text>(
+          find.byKey(
+            const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text'),
+          ),
+        );
+        expect(
+          maxTempWidget.data,
+          'H: ${consolidatedWeather.maxTemp?.oneDigitAfterComa()} °C',
+        );
 
-        final minTempWidget =
-            tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMinTemp_text')));
-        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTemp?.oneDigitAfterComa()} °C');
+        final minTempWidget = tester.firstWidget<Text>(
+          find.byKey(
+            const ValueKey('HighLowTemperatureRow_displayedMinTemp_text'),
+          ),
+        );
+        expect(
+          minTempWidget.data,
+          'L: ${consolidatedWeather.minTemp?.oneDigitAfterComa()} °C',
+        );
       },
     );
 
@@ -138,13 +186,25 @@ void main() {
           ),
         );
 
-        final maxTempWidget =
-            tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text')));
-        expect(maxTempWidget.data, 'H: ${consolidatedWeather.maxTempFahrenheit?.oneDigitAfterComa()} °F');
+        final maxTempWidget = tester.firstWidget<Text>(
+          find.byKey(
+            const ValueKey('HighLowTemperatureRow_displayedMaxTemp_text'),
+          ),
+        );
+        expect(
+          maxTempWidget.data,
+          'H: ${consolidatedWeather.maxTempFahrenheit?.oneDigitAfterComa()} °F',
+        );
 
-        final minTempWidget =
-            tester.firstWidget<Text>(find.byKey(const ValueKey('HighLowTemperatureRow_displayedMinTemp_text')));
-        expect(minTempWidget.data, 'L: ${consolidatedWeather.minTempFahrenheit?.oneDigitAfterComa()} °F');
+        final minTempWidget = tester.firstWidget<Text>(
+          find.byKey(
+            const ValueKey('HighLowTemperatureRow_displayedMinTemp_text'),
+          ),
+        );
+        expect(
+          minTempWidget.data,
+          'L: ${consolidatedWeather.minTempFahrenheit?.oneDigitAfterComa()} °F',
+        );
       },
     );
   });

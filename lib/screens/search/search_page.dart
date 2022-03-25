@@ -41,7 +41,8 @@ class SearchPageInput extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: Insets.medium),
       child: TextFormField(
-        onChanged: (value) => context.read<SearchBloc>()..add(SearchTyped(query: value)),
+        onChanged: (value) =>
+            context.read<SearchBloc>()..add(SearchTyped(query: value)),
         decoration: const InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.teal),

@@ -8,7 +8,8 @@ import 'package:weather_mobile/screens/weather/widget/weather_body_failure.dart'
 
 import '../../../helpers/helpers.dart';
 
-class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState> implements WeatherBloc {}
+class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState>
+    implements WeatherBloc {}
 
 class FakeWeatherStarted extends Fake implements WeatherStarted {}
 
@@ -45,8 +46,8 @@ void main() {
       ),
     );
 
-     await tester.pumpAndSettle();
-     await tester.tap(find.byType(TextButton));
-     verify(() => mockWeatherBloc.add(any())).called(1);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(TextButton));
+    verify(() => mockWeatherBloc.add(any())).called(1);
   });
 }

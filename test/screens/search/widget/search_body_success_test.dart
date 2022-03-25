@@ -26,9 +26,13 @@ void main() {
 
       expect(find.byType(ListView), findsOneWidget);
 
-      final listViewWidget = tester.firstWidget<ListView>(find.byType(ListView));
+      final listViewWidget =
+          tester.firstWidget<ListView>(find.byType(ListView));
 
-      expect(listViewWidget.childrenDelegate.estimatedChildCount, locations.length);
+      expect(
+        listViewWidget.childrenDelegate.estimatedChildCount,
+        locations.length,
+      );
     },
   );
 

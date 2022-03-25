@@ -14,17 +14,21 @@ void main() {
 
   setUp(() {
     mockWeatherDataSource = MockWeatherDataSource();
-    getLocationsByQueryUseCase = GetLocationsByQueryUseCase(weatherDataSource: mockWeatherDataSource);
+    getLocationsByQueryUseCase =
+        GetLocationsByQueryUseCase(weatherDataSource: mockWeatherDataSource);
   });
 
-  test('Given correct parameters it invokes every method in usecase and returns locations list', () async {
+  test(
+      'Given correct parameters it invokes every method in usecase and returns locations list',
+      () async {
     when(() => mockWeatherDataSource.getLocationByQuery(any())).thenAnswer(
       (_) => TaskEither.right(
         [location],
       ),
     );
 
-    final result = await getLocationsByQueryUseCase.execute(param: 'param').run();
+    final result =
+        await getLocationsByQueryUseCase.execute(param: 'param').run();
 
     verify(
       () => mockWeatherDataSource.getLocationByQuery(any()),
@@ -43,13 +47,20 @@ void main() {
       (_) => TaskEither.left(const ErrorDetailFatal()),
     );
 
-    final result = await getLocationsByQueryUseCase.execute(param: 'param').run();
+    final result =
+        await getLocationsByQueryUseCase.execute(param: 'param').run();
 
     verify(
       () => mockWeatherDataSource.getLocationByQuery(any()),
     ).called(1);
 
-    result.fold((exceptionDetail) => expect(exceptionDetail, GetLocationsByQueryUseCaseFailure.unexpected), (r) {});
+    result.fold(
+      (exceptionDetail) => expect(
+        exceptionDetail,
+        GetLocationsByQueryUseCaseFailure.unexpected,
+      ),
+      (_) {},
+    );
   });
 }
 

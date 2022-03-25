@@ -117,7 +117,11 @@ class AppTheme {
           systemNavigationBarIconBrightness: palette.brightness,
         ),
         toolbarTextStyle: TextStyle(color: palette.primaryColor),
-        titleTextStyle: TextStyle(color: palette.primaryColor, fontWeight: FontWeight.bold, fontSize: 16),
+        titleTextStyle: TextStyle(
+          color: palette.primaryColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
         color: palette.appBarBackgroundColor,
         iconTheme: IconThemeData(color: palette.iconColor),
         actionsIconTheme: IconThemeData(color: palette.iconColor),
@@ -177,7 +181,8 @@ class AppTheme {
         ),
       );
 
-  MaterialColor _generateMaterialColor(Color color) => MaterialColor(color.value, {
+  MaterialColor _generateMaterialColor(Color color) =>
+      MaterialColor(color.value, {
         50: _tintColor(color, 0.9),
         100: _tintColor(color, 0.8),
         200: _tintColor(color, 0.6),

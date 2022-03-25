@@ -17,10 +17,18 @@ void main() {
         ),
       );
 
-      final sunRiseWidget = tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileTime_sunRise_text')));
+      final sunRiseWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileTime_sunRise_text'),
+        ),
+      );
       expect(sunRiseWidget.data, sunrise.toTimeString());
 
-      final sunSetWidget = tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileTime_sunSet_text')));
+      final sunSetWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileTime_sunSet_text'),
+        ),
+      );
       expect(sunSetWidget.data, sunset.toTimeString());
 
       expect(find.byType(Text), findsNWidgets(4));
@@ -41,12 +49,18 @@ void main() {
         ),
       );
 
-      final windDirectionWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileWind_windDirectionCompass_text')));
+      final windDirectionWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileWind_windDirectionCompass_text'),
+        ),
+      );
       expect(windDirectionWidget.data, 'E');
 
-      final windSpeedWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileWinde_windSpeed_text')));
+      final windSpeedWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileWinde_windSpeed_text'),
+        ),
+      );
       expect(windSpeedWidget.data, '$windSpeedKm km/hr');
 
       expect(find.byType(Text), findsNWidgets(3));
@@ -67,12 +81,18 @@ void main() {
         ),
       );
 
-      final windDirectionWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileWind_windDirectionCompass_text')));
+      final windDirectionWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileWind_windDirectionCompass_text'),
+        ),
+      );
       expect(windDirectionWidget.data, 'E');
 
-      final windSpeedWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileWinde_windSpeed_text')));
+      final windSpeedWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileWinde_windSpeed_text'),
+        ),
+      );
       expect(windSpeedWidget.data, '$windSpeedMph mi/h');
 
       expect(find.byType(Text), findsNWidgets(3));
@@ -90,8 +110,11 @@ void main() {
         ),
       );
 
-      final humidityInPercentageWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileHumidity_humidityInPercentage_text')));
+      final humidityInPercentageWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileHumidity_humidityInPercentage_text'),
+        ),
+      );
       expect(humidityInPercentageWidget.data, '12 %');
 
       expect(find.byType(Text), findsNWidgets(2));
@@ -111,8 +134,11 @@ void main() {
         ),
       );
 
-      final visibilityWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileVisibility_visibility_text')));
+      final visibilityWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileVisibility_visibility_text'),
+        ),
+      );
       expect(visibilityWidget.data, '$visibilityKm km');
 
       expect(find.byType(Text), findsNWidgets(2));
@@ -132,8 +158,11 @@ void main() {
         ),
       );
 
-      final visibilityWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileVisibility_visibility_text')));
+      final visibilityWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileVisibility_visibility_text'),
+        ),
+      );
       expect(visibilityWidget.data, '$visibilityMph miles');
 
       expect(find.byType(Text), findsNWidgets(2));
@@ -151,8 +180,11 @@ void main() {
         ),
       );
 
-      final airPressureWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTileAirPressure_airPressureInMbar_text')));
+      final airPressureWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey('weatherInfoTileAirPressure_airPressureInMbar_text'),
+        ),
+      );
       expect(airPressureWidget.data, '$airPressureInMbar hPa');
 
       expect(find.byType(Text), findsNWidgets(2));
@@ -170,8 +202,13 @@ void main() {
         ),
       );
 
-      final predictablilityWidget =
-          tester.firstWidget<Text>(find.byKey(const ValueKey('weatherInfoTilePredictability_predictabilityInPercentage_text')));
+      final predictablilityWidget = tester.firstWidget<Text>(
+        find.byKey(
+          const ValueKey(
+            'weatherInfoTilePredictability_predictabilityInPercentage_text',
+          ),
+        ),
+      );
       expect(predictablilityWidget.data, '$predictabilityInPercentage %');
 
       expect(find.byType(Text), findsNWidgets(2));

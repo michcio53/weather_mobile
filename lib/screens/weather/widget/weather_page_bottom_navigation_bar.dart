@@ -44,7 +44,10 @@ class ConversionSwitch extends StatelessWidget {
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) {
         return TextButton(
-          onPressed: state.isLoading ? null : () => context.read<WeatherBloc>().add(WeatherConversionChanged()),
+          onPressed: state.isLoading
+              ? null
+              : () =>
+                  context.read<WeatherBloc>().add(WeatherConversionChanged()),
           child: Text(state.unitsEnum.toStringValue(context.l10n)),
         );
       },
@@ -65,7 +68,8 @@ class SearchIconButton extends StatelessWidget {
           onPressed: state.isLoading
               ? null
               : () async {
-                  final result = await Navigator.of(context).pushNamed(SearchPage.routeName);
+                  final result = await Navigator.of(context)
+                      .pushNamed(SearchPage.routeName);
                   if (result is int) {
                     bloc.add(WeatherItemChoosed(woeid: result));
                   }

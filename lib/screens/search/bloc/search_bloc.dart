@@ -19,16 +19,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   })  : _getLocationsByQueryUseCase = getLocationsByQueryUseCase,
         super(SearchInitial()) {
     on<SearchTyped>(
-      (event, emit) async {
-        await _mapSearchTyped(event, emit);
-      },
+      (event, emit) async => _mapSearchTyped(event, emit),
       transformer: debounce(_duration),
     );
   }
 
   final GetLocationsByQueryUseCase _getLocationsByQueryUseCase;
 
-  Future<void> _mapSearchTyped(SearchTyped event, Emitter<SearchState> emit) async {
+  Future<void> _mapSearchTyped(
+    SearchTyped event,
+    Emitter<SearchState> emit,
+  ) async {
     if (event.query.isNotEmpty) {
       emit(SearchLoading());
       await _getLocationsByQueryUseCase

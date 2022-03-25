@@ -58,7 +58,8 @@ void main() {
 
   group('Weather for Place', () {
     test('Given correct parameters it returns a weather model', () async {
-      when(() => mockWeatherForPlaceMapper.map(any())).thenReturn(weatherForPlace);
+      when(() => mockWeatherForPlaceMapper.map(any()))
+          .thenReturn(weatherForPlace);
 
       when(() => mockHttpApiClient.getWeatherForWoeid(any()))
           .thenAnswer((invocation) => Future.value(weatherForPlaceModel));
@@ -76,11 +77,15 @@ void main() {
       );
     });
 
-    test('Given exception was raised it returns ErrorDetails.fatal with exception and stacktrace', () async {
-      when(() => mockWeatherForPlaceMapper.map(any())).thenReturn(weatherForPlace);
+    test(
+        'Given exception was raised it returns ErrorDetails.fatal with exception and stacktrace',
+        () async {
+      when(() => mockWeatherForPlaceMapper.map(any()))
+          .thenReturn(weatherForPlace);
 
       final exception = Exception('fatal');
-      when(() => mockHttpApiClient.getWeatherForWoeid(any())).thenThrow(exception);
+      when(() => mockHttpApiClient.getWeatherForWoeid(any()))
+          .thenThrow(exception);
 
       final result = await source.getWeatherFromId('123').run();
 
@@ -93,7 +98,8 @@ void main() {
     });
 
     test('Given null body it returns ErrorDetails.fatal', () async {
-      when(() => mockWeatherForPlaceMapper.map(any())).thenReturn(weatherForPlace);
+      when(() => mockWeatherForPlaceMapper.map(any()))
+          .thenReturn(weatherForPlace);
 
       when(() => mockHttpApiClient.getWeatherForWoeid(any()))
           .thenAnswer((invocation) => Future.value(weatherForPlaceModel));
@@ -131,11 +137,14 @@ void main() {
         );
       });
 
-      test('Given exception was raised it returns ErrorDetails.fatal with exception and stacktrace', () async {
+      test(
+          'Given exception was raised it returns ErrorDetails.fatal with exception and stacktrace',
+          () async {
         when(() => mockLocationMapper.map(any())).thenReturn(location);
 
         final exception = Exception('fatal');
-        when(() => mockHttpApiClient.getLocationByQuery(any())).thenThrow(exception);
+        when(() => mockHttpApiClient.getLocationByQuery(any()))
+            .thenThrow(exception);
 
         final result = await source.getLocationByQuery('123').run();
 
@@ -158,7 +167,8 @@ void main() {
         verify(() => mockHttpApiClient.getLocationByQuery(any())).called(1);
 
         result.match(
-          (exceptionDetail) => expect(exceptionDetail, const ErrorDetailFatal()),
+          (exceptionDetail) =>
+              expect(exceptionDetail, const ErrorDetailFatal()),
           (weather) => {},
         );
       });

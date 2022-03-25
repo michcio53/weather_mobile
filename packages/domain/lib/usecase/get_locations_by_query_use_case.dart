@@ -5,7 +5,8 @@ import 'package:fpdart/fpdart.dart';
 
 enum GetLocationsByQueryUseCaseFailure { unexpected, empty }
 
-class GetLocationsByQueryUseCase extends ParamUseCase<GetLocationsByQueryUseCaseFailure, List<Location>, String> {
+class GetLocationsByQueryUseCase extends ParamUseCase<
+    GetLocationsByQueryUseCaseFailure, List<Location>, String> {
   GetLocationsByQueryUseCase({
     required WeatherDataSource weatherDataSource,
   }) : _weatherDataSource = weatherDataSource;
@@ -16,8 +17,9 @@ class GetLocationsByQueryUseCase extends ParamUseCase<GetLocationsByQueryUseCase
   TaskEither<GetLocationsByQueryUseCaseFailure, List<Location>> execute({
     required String param,
   }) {
-    return _weatherDataSource
-        .getLocationByQuery(param)
-        .bimap((_) => GetLocationsByQueryUseCaseFailure.unexpected, (result) => result);
+    return _weatherDataSource.getLocationByQuery(param).bimap(
+          (_) => GetLocationsByQueryUseCaseFailure.unexpected,
+          (result) => result,
+        );
   }
 }

@@ -8,7 +8,8 @@ import 'package:weather_mobile/screens/weather/widget/weather_page_bottom_naviga
 
 import '../../../helpers/helpers.dart';
 
-class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState> implements WeatherBloc {}
+class MockWeatherBloc extends MockBloc<WeatherEvent, WeatherState>
+    implements WeatherBloc {}
 
 class FakeWeatherStarted extends Fake implements WeatherStarted {}
 
@@ -22,7 +23,8 @@ void main() {
     registerFallbackValue(FakeWeatherStarted());
   });
 
-  testWidgets('renders WeatherPageBottomNavigationBar with correct childrens', (tester) async {
+  testWidgets('renders WeatherPageBottomNavigationBar with correct childrens',
+      (tester) async {
     when(() => mockWeatherBloc.state).thenReturn(
       const WeatherState.initial(),
     );
@@ -43,9 +45,12 @@ void main() {
   group(
     'ConversionSwitch',
     () {
-      testWidgets('triggers WeatherBloc state if success and user click on button', (tester) async {
+      testWidgets(
+          'triggers WeatherBloc state if success and user click on button',
+          (tester) async {
         when(() => mockWeatherBloc.state).thenReturn(
-          const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success),
+          const WeatherState.initial()
+              .copyWith(weatherStatus: WeatherStatus.success),
         );
         when(() => mockWeatherBloc.add(any())).thenAnswer((_) async {});
 
@@ -64,9 +69,12 @@ void main() {
         verify(() => mockWeatherBloc.add(any())).called(1);
       });
 
-      testWidgets('not triggers WeatherBloc state if loading and user click on button', (tester) async {
+      testWidgets(
+          'not triggers WeatherBloc state if loading and user click on button',
+          (tester) async {
         when(() => mockWeatherBloc.state).thenReturn(
-          const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.loading),
+          const WeatherState.initial()
+              .copyWith(weatherStatus: WeatherStatus.loading),
         );
         when(() => mockWeatherBloc.add(any())).thenAnswer((_) async {});
 
@@ -88,9 +96,11 @@ void main() {
   );
 
   group('SearchIconButton', () {
-    testWidgets('when WeatherStatus.loading on onPressed is Null', (tester) async {
+    testWidgets('when WeatherStatus.loading on onPressed is Null',
+        (tester) async {
       when(() => mockWeatherBloc.state).thenReturn(
-        const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.loading),
+        const WeatherState.initial()
+            .copyWith(weatherStatus: WeatherStatus.loading),
       );
       when(() => mockWeatherBloc.add(any())).thenAnswer((_) async {});
 
@@ -109,9 +119,11 @@ void main() {
       expect(button.onPressed, isA<Null>());
     });
 
-    testWidgets('when WeatherStatus.loading on onPressed is Function', (tester) async {
+    testWidgets('when WeatherStatus.loading on onPressed is Function',
+        (tester) async {
       when(() => mockWeatherBloc.state).thenReturn(
-        const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success),
+        const WeatherState.initial()
+            .copyWith(weatherStatus: WeatherStatus.success),
       );
       when(() => mockWeatherBloc.add(any())).thenAnswer((_) async {});
 
@@ -129,9 +141,11 @@ void main() {
       expect(button.onPressed, isA<Function>());
     });
 
-    testWidgets('when click on IconButton it pushes search page', (tester) async {
+    testWidgets('when click on IconButton it pushes search page',
+        (tester) async {
       when(() => mockWeatherBloc.state).thenReturn(
-        const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success),
+        const WeatherState.initial()
+            .copyWith(weatherStatus: WeatherStatus.success),
       );
       //ignore: body_might_complete_normally_nullable
       when(() => mockNavigator.pushNamed(any())).thenAnswer((_) async {});
@@ -153,9 +167,12 @@ void main() {
       verify(() => mockNavigator.pushNamed('/search')).called(1);
     });
 
-    testWidgets('when return from previous screen with correct value it pushes event', (tester) async {
+    testWidgets(
+        'when return from previous screen with correct value it pushes event',
+        (tester) async {
       when(() => mockWeatherBloc.state).thenReturn(
-        const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success),
+        const WeatherState.initial()
+            .copyWith(weatherStatus: WeatherStatus.success),
       );
       //ignore: body_might_complete_normally_nullable
       when(() => mockNavigator.pushNamed(any())).thenAnswer((_) async => 123);
@@ -178,9 +195,12 @@ void main() {
       verify(() => mockWeatherBloc.add(any())).called(1);
     });
 
-    testWidgets('when return from previous screen with incorrect value it do nothing', (tester) async {
+    testWidgets(
+        'when return from previous screen with incorrect value it do nothing',
+        (tester) async {
       when(() => mockWeatherBloc.state).thenReturn(
-        const WeatherState.initial().copyWith(weatherStatus: WeatherStatus.success),
+        const WeatherState.initial()
+            .copyWith(weatherStatus: WeatherStatus.success),
       );
       //ignore: body_might_complete_normally_nullable
       when(() => mockNavigator.pushNamed(any())).thenAnswer((_) async => '123');

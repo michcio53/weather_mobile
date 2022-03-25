@@ -9,7 +9,7 @@ void main() {
     'renders WeatherBodyInitial with correct childrens',
     (tester) async {
       await tester.pumpApp(
-        const  WeatherBodyInitial(),
+        const WeatherBodyInitial(),
       );
 
       expect(find.byType(Text), findsNWidgets(2));

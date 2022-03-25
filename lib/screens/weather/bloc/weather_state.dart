@@ -23,7 +23,9 @@ class WeatherState extends Equatable {
 
   bool get isWeatherDataNotEmpty {
     final consolidatedWeather = weatherForPlace?.consolidatedWeather;
-    return weatherForPlace != null && consolidatedWeather != null && consolidatedWeather.isNotEmpty;
+    return weatherForPlace != null &&
+        consolidatedWeather != null &&
+        consolidatedWeather.isNotEmpty;
   }
 
   bool get isLoading => weatherStatus == WeatherStatus.loading;

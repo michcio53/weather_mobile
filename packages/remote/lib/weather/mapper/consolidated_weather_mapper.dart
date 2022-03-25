@@ -2,7 +2,8 @@ import 'package:domain/model/consolidated_weather.dart';
 import 'package:remote/mapper/mapper.dart';
 import 'package:remote/weather/model/response/consolidated_weather_model.dart';
 
-class ConsolidatedWeatherMapper implements Mapper<ConsolidatedWeatherModel, ConsolidatedWeather> {
+class ConsolidatedWeatherMapper
+    implements Mapper<ConsolidatedWeatherModel, ConsolidatedWeather> {
   const ConsolidatedWeatherMapper();
 
   @override
@@ -13,7 +14,9 @@ class ConsolidatedWeatherMapper implements Mapper<ConsolidatedWeatherModel, Cons
       weatherStateAbbr: element.weatherStateAbbr,
       windDirectionCompass: element.windDirectionCompass,
       created: element.created,
-      applicableDate: element.applicableDate != null ? DateTime.parse(element.applicableDate!) : null,
+      applicableDate: element.applicableDate != null
+          ? DateTime.parse(element.applicableDate!)
+          : null,
       minTemp: element.minTemp,
       maxTemp: element.maxTemp,
       theTemp: element.theTemp,

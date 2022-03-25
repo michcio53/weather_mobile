@@ -51,21 +51,26 @@ class WeatherBodySuccess extends StatelessWidget {
                 ),
                 Text(
                   weatherForPlace.title,
-                  key: const ValueKey('WeatherBodySuccess_weatherForPlaceTitle_text'),
+                  key: const ValueKey(
+                    'WeatherBodySuccess_weatherForPlaceTitle_text',
+                  ),
                   style: context.textTheme.headline2,
                   textAlign: TextAlign.center,
                 ),
                 if (temp != null)
                   Text(
                     unitsEnum.toDegreeString(context.l10n, temp),
-                    style: context.textTheme.headline1?.copyWith(fontSize: FontSizes.xxxLarge),
+                    style: context.textTheme.headline1
+                        ?.copyWith(fontSize: FontSizes.xxxLarge),
                     textAlign: TextAlign.center,
                   ),
                 const SizedBox(height: Insets.small),
                 if (weatherStateName != null)
                   Text(
                     weatherStateName,
-                    key: const ValueKey('WeatherBodySuccess_weatherForPlaceWeatherStateName_text'),
+                    key: const ValueKey(
+                      'WeatherBodySuccess_weatherForPlaceWeatherStateName_text',
+                    ),
                     style: context.textTheme.headline2,
                     textAlign: TextAlign.center,
                   ),
@@ -105,7 +110,9 @@ class WeatherBodySuccess extends StatelessWidget {
                   sunRise: weatherForPlace.sunRise,
                   sunSet: weatherForPlace.sunSet,
                 ),
-                if (windSpeedKm != null && windSpeed != null && windDirectionCompass != null)
+                if (windSpeedKm != null &&
+                    windSpeed != null &&
+                    windDirectionCompass != null)
                   WeatherInfoTile.wind(
                     windSpeedKm: windSpeedKm,
                     windSpeedMph: windSpeed,

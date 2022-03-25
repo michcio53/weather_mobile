@@ -10,7 +10,12 @@ void main() {
   });
 
   test('throw an error if not json not complete', () async {
-    expect(() => WeatherForPlaceModel.fromJson(weatherForPlaceUncomplete), throwsA(isA<TypeError>()));
+    expect(
+      () => WeatherForPlaceModel.fromJson(weatherForPlaceUncomplete),
+      throwsA(
+        isA<TypeError>(),
+      ),
+    );
   });
 
   test('check if model creates json', () {
