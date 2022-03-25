@@ -17,6 +17,15 @@ class HttpProvider {
   }) {
     _dio.options.baseUrl = _baseUrl;
 
+    if (isLoggingEnabled) {
+      _dio.interceptors.add(
+        LogInterceptor(
+          requestHeader: false,
+          responseHeader: false,
+        ),
+      );
+    }
+
     return HttpApiClient(_dio);
   }
 }
