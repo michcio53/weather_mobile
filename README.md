@@ -8,12 +8,29 @@ A Very Good Project created by Very Good CLI.
 
 ---
 
-## Overview
+## Overview 📱
 ![Overview](/images/tour.gif)
 
-## Requirements
+---
+
+## Features 🌡️
+✨ Weather fetch
+
+✨ Location search
+
+✨ Saving a selected location
+
+✨ Imperial to metric (and vice versa) conversion
+
+✨ Light/Dark theme
+
+---
+
+## Requirements 🛠️
 - Flutter 2.10.3
 - iOS Simulator/Android Emulator
+
+---
 
 ## Getting Started 🚀
 
